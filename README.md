@@ -2,7 +2,7 @@
 ## Wilderness weather station ##
 
 **Group members:**
-* Nasser Zamara<br/>
-* Jacob Negri<br/>
-* Heylon White<br/>
-* Alex Silva<br/>
+* Nasser Zamara: Project description<br/>
+* Jacob Negri: Database design<br/>
+* Heylon White: User stories<br/>
+* Alex Silva: User interface design<br/>
