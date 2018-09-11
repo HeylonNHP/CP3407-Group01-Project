@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2018-08-19" view-index="0" gantt-divider-location="407" resource-divider-location="300" version="2.8.6" locale="en_US">
+    <description/>
+    <view zooming-state="default:5" id="gantt-chart">
+        <field id="tpd3" name="Name" width="294" order="0"/>
+        <field id="tpd4" name="Begin date" width="56" order="1"/>
+        <field id="tpd5" name="End date" width="53" order="2"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="210" order="0"/>
+        <field id="1" name="Default role" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+        <date year="2018" month="9" date="8" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="9" date="9" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="9" date="2" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="9" date="1" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="8" date="26" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="8" date="25" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="8" date="19" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="10" date="6" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="10" date="7" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="10" date="14" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="10" date="13" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="10" date="21" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="10" date="20" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="10" date="28" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+        <date year="2018" month="10" date="27" type="WORKING_DAY"><![CDATA[Weekend exception]]></date>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="102" name="Iteration 1" meeting="false" start="2018-08-19" duration="23" complete="0" expand="true">
+            <depend id="103" type="2" difference="0" hardness="Strong"/>
+            <task id="0" name="Setup of Documentation" color="#8cb6ce" meeting="false" start="2018-08-19" duration="1" complete="0" thirdDate="2018-09-10" thirdDate-constraint="0" expand="true"/>
+            <task id="2" name="Setup of Github" color="#8cb6ce" meeting="false" start="2018-08-20" duration="1" complete="0" thirdDate="2018-09-10" thirdDate-constraint="0" expand="true"/>
+            <task id="5" name="Group Communication methods/ availability" color="#8cb6ce" meeting="false" start="2018-08-20" duration="1" complete="0" thirdDate="2018-09-10" thirdDate-constraint="0" expand="true">
+                <depend id="8" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="8" name="Weather Station Research" color="#8cb6ce" meeting="false" start="2018-08-21" duration="5" complete="0" thirdDate="2018-08-21" thirdDate-constraint="0" expand="true"/>
+            <task id="15" name="Understanding of project between group" color="#8cb6ce" meeting="false" start="2018-08-27" duration="1" complete="0" thirdDate="2018-08-20" thirdDate-constraint="0" expand="true">
+                <depend id="11" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="11" name="Scope justification" color="#8cb6ce" meeting="false" start="2018-08-28" duration="1" complete="0" thirdDate="2018-08-28" thirdDate-constraint="0" expand="true">
+                <depend id="18" type="2" difference="0" hardness="Strong"/>
+                <depend id="21" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="18" name="Limits and Execlusions" color="#8cb6ce" meeting="false" start="2018-08-29" duration="2" complete="0" thirdDate="2018-08-20" thirdDate-constraint="0" expand="true"/>
+            <task id="21" name="User Stories" color="#8cb6ce" meeting="false" start="2018-08-29" duration="4" complete="0" thirdDate="2018-08-29" thirdDate-constraint="0" expand="true">
+                <depend id="24" type="2" difference="0" hardness="Strong"/>
+                <depend id="29" type="2" difference="0" hardness="Strong"/>
+                <depend id="35" type="2" difference="0" hardness="Strong"/>
+                <depend id="40" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="24" name="User case diagram" color="#8cb6ce" meeting="false" start="2018-09-02" duration="2" complete="0" thirdDate="2018-09-04" thirdDate-constraint="0" expand="true"/>
+            <task id="29" name="User case Description" color="#8cb6ce" meeting="false" start="2018-09-02" duration="1" complete="0" thirdDate="2018-08-20" thirdDate-constraint="0" expand="true"/>
+            <task id="35" name="Class Diagram" color="#8cb6ce" meeting="false" start="2018-09-02" duration="1" complete="0" thirdDate="2018-09-04" thirdDate-constraint="0" expand="true"/>
+            <task id="40" name="Relationship diagram" color="#8cb6ce" meeting="false" start="2018-09-02" duration="1" complete="0" thirdDate="2018-08-20" thirdDate-constraint="0" expand="true">
+                <depend id="43" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="43" name="Graphical User Interface Design" color="#8cb6ce" meeting="false" start="2018-09-03" duration="3" complete="0" thirdDate="2018-09-03" thirdDate-constraint="0" expand="true">
+                <depend id="46" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="46" name="GUI Testing and adjusting" color="#8cb6ce" meeting="false" start="2018-09-06" duration="2" complete="0" thirdDate="2018-09-05" thirdDate-constraint="0" expand="true">
+                <depend id="60" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="60" name="Project development documentation and finalising documentation" color="#8cb6ce" meeting="false" start="2018-09-08" duration="3" complete="0" thirdDate="2018-09-08" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="103" name="Iteration 2" color="#8cb6ce" meeting="false" start="2018-09-11" duration="42" complete="0" thirdDate="2018-08-21" thirdDate-constraint="0" expand="true">
+            <task id="106" name="User Log in function" meeting="false" start="2018-09-11" duration="1" complete="0" expand="true">
+                <depend id="108" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="108" name="Develop functions for each of the required sensors to be used" color="#8cb6ce" meeting="false" start="2018-09-12" duration="7" complete="0" thirdDate="2018-09-11" thirdDate-constraint="0" expand="true">
+                <depend id="112" type="2" difference="0" hardness="Strong"/>
+                <depend id="116" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="112" name="Develop Function for machine Calibration" color="#8cb6ce" meeting="false" start="2018-09-21" duration="5" complete="0" thirdDate="2018-09-11" thirdDate-constraint="0" expand="true"/>
+            <task id="116" name="Develop Automatic upload mode" color="#8cb6ce" meeting="false" start="2018-09-21" duration="7" complete="0" thirdDate="2018-09-11" thirdDate-constraint="0" expand="true">
+                <depend id="120" type="2" difference="0" hardness="Strong"/>
+                <depend id="126" type="2" difference="0" hardness="Strong"/>
+                <depend id="133" type="2" difference="0" hardness="Strong"/>
+                <depend id="137" type="2" difference="0" hardness="Strong"/>
+                <depend id="146" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="120" name="Tutorial for device" color="#8cb6ce" meeting="false" start="2018-10-02" duration="9" complete="0" thirdDate="2018-10-02" thirdDate-constraint="0" expand="true">
+                <depend id="123" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="123" name="Manufacturer's requirements" color="#8cb6ce" meeting="false" start="2018-10-11" duration="7" complete="0" thirdDate="2018-09-21" thirdDate-constraint="0" expand="true">
+                <depend id="152" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="126" name="Functions for protecting data" color="#8cb6ce" meeting="false" start="2018-10-02" duration="4" complete="0" thirdDate="2018-10-02" thirdDate-constraint="0" expand="true">
+                <depend id="130" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="130" name="Data Security" color="#8cb6ce" meeting="false" start="2018-10-06" duration="2" complete="0" thirdDate="2018-10-06" thirdDate-constraint="0" expand="true"/>
+            <task id="133" name="function to show time and date on the device" color="#8cb6ce" meeting="false" start="2018-10-02" duration="2" complete="0" thirdDate="2018-10-02" thirdDate-constraint="0" expand="true">
+                <depend id="137" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="137" name="Alarms and emergency functions" color="#8cb6ce" meeting="false" start="2018-10-04" duration="3" complete="0" thirdDate="2018-10-18" thirdDate-constraint="0" expand="true"/>
+            <task id="146" name="Password resetting function" color="#8cb6ce" meeting="false" start="2018-10-02" duration="1" complete="0" thirdDate="2018-10-01" thirdDate-constraint="0" expand="true"/>
+            <task id="152" name="Product testing" color="#8cb6ce" meeting="false" start="2018-10-18" duration="5" complete="0" thirdDate="2018-10-18" thirdDate-constraint="0" expand="true">
+                <depend id="158" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="158" name="Product Refinement" color="#8cb6ce" meeting="false" start="2018-10-23" duration="5" complete="0" thirdDate="2018-10-01" thirdDate-constraint="0" expand="true">
+                <depend id="162" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="162" name="Completion and Submission of Project" color="#8cb6ce" meeting="false" start="2018-10-28" duration="1" complete="0" thirdDate="2018-10-14" thirdDate-constraint="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
