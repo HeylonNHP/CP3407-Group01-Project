@@ -1,6 +1,8 @@
 package GUI;
 
 import GUI.Panels.StartScreen;
+import GUI.Panels.StationViewer;
+import database.WeatherStation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +27,15 @@ public class Window {
     }
 
     public static void showStartScreen(){
+        mainWindow.getContentPane().removeAll();
         mainWindow.add(new StartScreen(),BorderLayout.CENTER);
+        mainWindow.revalidate();
+        mainWindow.repaint();
+    }
+
+    public static void showStationViewer(WeatherStation station){
+        mainWindow.getContentPane().removeAll();
+        mainWindow.add(new StationViewer(station));
         mainWindow.revalidate();
         mainWindow.repaint();
     }

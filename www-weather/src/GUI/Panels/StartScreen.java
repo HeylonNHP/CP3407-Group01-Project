@@ -2,10 +2,13 @@ package GUI.Panels;
 
 import GUI.Window;
 import com.sun.glass.ui.Size;
+import database.WeatherStation;
 
 import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeListener;
 
 public class StartScreen extends JPanel {
     public StartScreen(){
@@ -52,7 +55,14 @@ public class StartScreen extends JPanel {
         menuPanel.add(stationMaintenance,c);
 
         add(menuPanel);
+
+        //Event listeners
+        weatherStations.addActionListener((e) -> {
+            Window.showStationViewer(new WeatherStation(1,"test",1));
+        });
     }
+
+
 
     @Override
     protected void paintComponent(Graphics g) {
