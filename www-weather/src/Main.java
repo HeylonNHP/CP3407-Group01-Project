@@ -23,9 +23,13 @@ public class Main {
 
             Reading[] readings = database.databaseInterface.getWeatherStationReadings(stations[0]);
             System.out.println("Readings count: " + readings.length);
+
+            System.out.println(readings[0].getReadingDate().toString());
         }catch (java.sql.SQLException ex){
             ex.printStackTrace();
         }
+
+        GUI.Window.showWindow();
 
 
         return;
