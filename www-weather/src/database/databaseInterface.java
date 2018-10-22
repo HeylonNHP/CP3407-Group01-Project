@@ -74,4 +74,22 @@ public class databaseInterface {
         return (WeatherStation[])weatherStations.toArray(new WeatherStation[0]);
     }
 
+    public static Reading[] getWeatherStationReadings(WeatherStation station) throws java.sql.SQLException{
+        List<Reading> readings = new ArrayList<>();
+
+        String query = "SELECT * FROM weatherdata.Readings;";
+
+        try(Statement stmt = con.createStatement()){
+            try(ResultSet rset = stmt.executeQuery(query)){
+                while (rset.next()){
+                    Reading reading = new Reading(rset.getInt(1), rset.getInt(2), rset.getTimestamp(3),
+                            rset.getInt(4), rset.getInt(5), rset.getInt(6), rset.getInt(7),
+                            rset.getInt(8), rset.getInt(9), rset.getInt(10));
+                    readings.add(reading);
+                }
+            }
+        }
+        return (Reading[])readings.toArray(new Reading[0]);
+    }
+
 }
