@@ -1,3 +1,5 @@
+import database.WeatherStation;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,7 +15,14 @@ public class Main {
 
         database.databaseInterface.connectToDatabase();
         database.databaseInterface.testQuery();
-        database.databaseInterface.getWeatherStationList();
+
+        try{
+            WeatherStation[] stations = database.databaseInterface.getWeatherStationList();
+            System.out.println("Station count: " + stations.length);
+        }catch (java.sql.SQLException ex){
+            ex.printStackTrace();
+        }
+
 
         return;
 
