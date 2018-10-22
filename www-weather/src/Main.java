@@ -10,6 +10,14 @@ import java.sql.Statement;
 public class Main {
     public static void main(String args[]){
         System.out.print("Hello world!");
+
+        database.databaseInterface.connectToDatabase();
+        database.databaseInterface.testQuery();
+        database.databaseInterface.getWeatherStationList();
+
+        return;
+
+        /*
         try{
             Class.forName("com.mysql.jdbc.Driver");
         }catch (Exception e){
@@ -21,7 +29,6 @@ public class Main {
             String jdbcUrl = "jdbc:mysql://cp3407-www-weather-station.cjwpmslychx7.us-east-1.rds.amazonaws.com?user=CP3407&password=3MJLOpDV47IRHtrCA4Qg";
             Connection con = DriverManager.getConnection(jdbcUrl);
             System.out.println("Connected!");
-
 
             //Test query
             String queryString = "select version()";
@@ -41,6 +48,7 @@ public class Main {
             System.out.println("Ouch");
             e.printStackTrace();
         }
+        */
 
     }
 }
