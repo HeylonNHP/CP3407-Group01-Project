@@ -1,3 +1,4 @@
+import database.Reading;
 import database.WeatherStation;
 
 import java.sql.Connection;
@@ -19,6 +20,9 @@ public class Main {
         try{
             WeatherStation[] stations = database.databaseInterface.getWeatherStationList();
             System.out.println("Station count: " + stations.length);
+
+            Reading[] readings = database.databaseInterface.getWeatherStationReadings(stations[0]);
+            System.out.println("Readings count: " + readings.length);
         }catch (java.sql.SQLException ex){
             ex.printStackTrace();
         }

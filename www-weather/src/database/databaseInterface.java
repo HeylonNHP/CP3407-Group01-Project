@@ -77,7 +77,9 @@ public class databaseInterface {
     public static Reading[] getWeatherStationReadings(WeatherStation station) throws java.sql.SQLException{
         List<Reading> readings = new ArrayList<>();
 
-        String query = "SELECT * FROM weatherdata.Readings;";
+        int stationID = station.getStationID();
+
+        String query = "SELECT * FROM weatherdata.Readings where Station_ID = "+ stationID +";";
 
         try(Statement stmt = con.createStatement()){
             try(ResultSet rset = stmt.executeQuery(query)){
