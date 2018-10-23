@@ -28,7 +28,7 @@ public class Window {
 
     public static void showStartScreen(){
         mainWindow.getContentPane().removeAll();
-        mainWindow.add(new StartScreen(),BorderLayout.CENTER);
+        mainWindow.add(new StartScreen());
         mainWindow.revalidate();
         mainWindow.repaint();
     }

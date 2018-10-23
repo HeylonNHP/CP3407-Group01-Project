@@ -12,9 +12,6 @@ import java.beans.PropertyChangeListener;
 
 public class StartScreen extends JPanel {
     public StartScreen(){
-        //BoxLayout layout = new BoxLayout(this,BoxLayout.PAGE_AXIS);
-        //setLayout(layout);
-        //setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         setLayout(null);
         System.out.println(Window.getSize());
         Dimension size = Window.getSize();
