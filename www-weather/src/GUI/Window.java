@@ -11,6 +11,7 @@ import java.awt.*;
 
 public class Window {
     private static JFrame mainWindow = new JFrame();
+    private static boolean loggedIn = false;
     static {
         //initialise window
         LayoutManager layout = new BorderLayout();
@@ -58,5 +59,13 @@ public class Window {
 
     public static Dimension getSize(){
         return mainWindow.getSize();
+    }
+
+    public static boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public static void setLoggedIn(boolean loggedInValue) {
+        loggedIn = loggedInValue;
     }
 }

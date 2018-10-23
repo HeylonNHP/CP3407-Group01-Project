@@ -92,6 +92,9 @@ public class LoginScreen extends JPanel {
                 if(password.equals(user.getPassword())){
                     JOptionPane.showMessageDialog(null, String.format("Logged in successfully, Welcome %s %s", user.getFirstName(),
                             user.getLastName()));
+                    Window.setLoggedIn(true);
+                    System.out.printf("Test1: %s", Window.isLoggedIn());
+                    Window.showStartScreen();
                     return;
                 }
             }

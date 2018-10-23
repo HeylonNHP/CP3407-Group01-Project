@@ -23,7 +23,13 @@ public class StartScreen extends JPanel {
         Dimension windowSize = Window.getSize();
 
         //Login button
-        JButton loginButton = new JButton("Administration login");
+        System.out.println(Window.isLoggedIn());
+        String loginButtonText = "Administration login";
+        if(Window.isLoggedIn()){
+            loginButtonText = "Logout";
+        }
+
+        JButton loginButton = new JButton(loginButtonText);
         loginButton.setBounds(windowSize.width - 250, 50,200,25);
         add(loginButton);
 
