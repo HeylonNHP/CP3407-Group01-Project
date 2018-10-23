@@ -25,7 +25,7 @@ public class LoginScreen extends JPanel {
 
 
         //Title Label
-        JLabel loginScreenLabel = new JLabel("Administration login ");
+        JLabel loginScreenLabel = new JLabel("<html><h1>Administration login </h1></html>");
         c.gridx = 0;
         c.gridy = 0;
         add(loginScreenLabel,c);
@@ -59,7 +59,6 @@ public class LoginScreen extends JPanel {
         JButton confirmButton = new JButton("Login");
         c.gridy = 4;
         add(confirmButton,c);
-
 
         //Event listeners
         backButton.addActionListener((e -> Window.showStartScreen()));
