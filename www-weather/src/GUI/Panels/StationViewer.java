@@ -114,7 +114,13 @@ public class StationViewer extends JPanel{
         pastWeather.setBounds(25,400,200,25);
         add(pastWeather);
 
-        populateStationList();
+        try{
+            populateStationList();
+            populateDataFields();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
         //Event listeners
         backButton.addActionListener((e) -> {
             Window.showStartScreen();

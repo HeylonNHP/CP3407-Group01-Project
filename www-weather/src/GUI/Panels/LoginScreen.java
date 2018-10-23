@@ -2,10 +2,12 @@ package GUI.Panels;
 
 import GUI.*;
 import GUI.Window;
+import database.AdminUser;
 import database.WeatherStation;
 import javafx.scene.control.PasswordField;
 
 import javax.swing.*;
+import javax.swing.tree.ExpandVetoException;
 import java.awt.*;
 import java.security.PublicKey;
 
@@ -13,6 +15,10 @@ import java.security.PublicKey;
  * Created by AleCSilva on 23/10/18.
  */
 public class LoginScreen extends JPanel {
+
+    JTextField usernameField = new JTextField("");
+    JPasswordField passwordField = new JPasswordField("");
+
     public LoginScreen(){
         super(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -41,7 +47,7 @@ public class LoginScreen extends JPanel {
         c.gridy = 2;
         add(usernameLabel,c);
 
-        JTextField usernameField = new JTextField("");
+
         c.gridx = 1;
         add(usernameField,c);
 
@@ -50,7 +56,7 @@ public class LoginScreen extends JPanel {
         c.gridy = 3;
         add(passwordLabel,c);
 
-        JPasswordField passwordField = new JPasswordField("");
+
         c.gridx = 1;
         c.gridy = 3;
         add(passwordField,c);
@@ -62,5 +68,34 @@ public class LoginScreen extends JPanel {
 
         //Event listeners
         backButton.addActionListener((e -> Window.showStartScreen()));
+
+        confirmButton.addActionListener((e) -> {
+            try{
+                logIn();
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
+    }
+
+    private void logIn() throws java.sql.SQLException{
+        AdminUser[] adminUsers = database.databaseInterface.getAdminUsers();
+
+        String username = usernameField.getText();
+        String password = String.valueOf(passwordField.getPassword());
+
+        System.out.printf("Username: %s Password: %s", username, password);
+
+        for(AdminUser user : adminUsers){
+            System.out.printf("");
+            if(username.equals(user.getUserName())){
+                if(password.equals(user.getPassword())){
+                    JOptionPane.showMessageDialog(null, String.format("Logged in successfully, Welcome %s %s", user.getFirstName(),
+                            user.getLastName()));
+                    return;
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Log in failed");
     }
 }
