@@ -7,13 +7,22 @@ import javax.swing.*;
 import java.awt.*;
 
 public class StationViewer extends JPanel{
+
+    JComboBox<WeatherStation> stationSelector = new JComboBox<>();
+    JTextField tempText = new JTextField("69");
+    JTextField pressText = new JTextField("6969");
+    JTextField sunText = new JTextField("69");
+    JTextField rainText = new JTextField("69");
+    JTextField windSpeedText = new JTextField("69");
+    JTextField windDirectionText = new JTextField("69");
+
     public StationViewer(WeatherStation station){
         setLayout(null);
         Dimension size = Window.getSize();
         setPreferredSize(size);
 
         //Station selector combobox
-        JComboBox<WeatherStation> stationSelector = new JComboBox<>();
+
         stationSelector.setBounds(25,25,200,25);
         add(stationSelector);
 
@@ -37,7 +46,7 @@ public class StationViewer extends JPanel{
         JLabel tempLabel = new JLabel("Temperature");
         weatherStats.add(tempLabel,c);
 
-        JTextField tempText = new JTextField("69");
+
         tempText.setEditable(false);
         c.gridx = 1;
         weatherStats.add(tempText,c);
@@ -48,7 +57,7 @@ public class StationViewer extends JPanel{
         c.gridy = 1;
         weatherStats.add(pressLabel,c);
 
-        JTextField pressText = new JTextField("6969");
+
         pressText.setEditable(false);
         c.gridx = 1;
         weatherStats.add(pressText,c);
@@ -59,7 +68,7 @@ public class StationViewer extends JPanel{
         c.gridy = 2;
         weatherStats.add(sunLabel,c);
 
-        JTextField sunText = new JTextField("69");
+
         sunText.setEditable(false);
         c.gridx = 1;
         weatherStats.add(sunText,c);
@@ -70,7 +79,7 @@ public class StationViewer extends JPanel{
         c.gridy = 3;
         weatherStats.add(rainLabel,c);
 
-        JTextField rainText = new JTextField("69");
+
         rainText.setEditable(false);
         c.gridx = 1;
         weatherStats.add(rainText,c);
@@ -81,7 +90,7 @@ public class StationViewer extends JPanel{
         c.gridy = 4;
         weatherStats.add(windSpeedLabel,c);
 
-        JTextField windSpeedText = new JTextField("69");
+
         windSpeedText.setEditable(false);
         c.gridx = 1;
         weatherStats.add(windSpeedText,c);
@@ -92,7 +101,7 @@ public class StationViewer extends JPanel{
         c.gridy = 5;
         weatherStats.add(windDirectionLabel,c);
 
-        JTextField windDirectionText = new JTextField("69");
+
         windDirectionText.setEditable(false);
         c.gridx = 1;
         weatherStats.add(windDirectionText,c);
@@ -104,9 +113,23 @@ public class StationViewer extends JPanel{
         pastWeather.setBounds(25,400,200,25);
         add(pastWeather);
 
+        populateStationList();
         //Event listeners
         backButton.addActionListener((e) -> {
             Window.showStartScreen();
         });
+    }
+
+    private void populateStationList(){
+        try {
+            WeatherStation[] stationList = database.databaseInterface.getWeatherStationList();
+            stationSelector.removeAllItems();
+            for(WeatherStation station : stationList) {
+                stationSelector.insertItemAt(station, stationSelector.getItemCount());
+            }
+        }
+        catch (Exception ex){
+
+        }
     }
 }
