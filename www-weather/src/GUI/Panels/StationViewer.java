@@ -129,7 +129,7 @@ public class StationViewer extends JPanel{
             }
         }
         catch (Exception ex){
-
+            System.out.println("Exception error!");
         }
     }
 }
