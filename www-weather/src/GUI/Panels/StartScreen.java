@@ -4,6 +4,7 @@ import GUI.Window;
 import com.sun.glass.ui.Size;
 import database.WeatherStation;
 
+import javax.imageio.ImageIO;
 import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
@@ -35,6 +36,12 @@ public class StartScreen extends JPanel {
         GridBagConstraints c = new GridBagConstraints();
 
         JButton weatherStations = new JButton("Weather Stations");
+        try {
+            Image img = ImageIO.read(getClass().getResource("../../img/station.png"));
+            weatherStations.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         c.gridx = 0;
         c.gridy = 0;
         c.fill = GridBagConstraints.BOTH;
@@ -44,10 +51,22 @@ public class StartScreen extends JPanel {
         menuPanel.add(weatherStations,c);
 
         JButton management = new JButton("Management");
+        try {
+            Image img = ImageIO.read(getClass().getResource("../../img/management.png"));
+            management.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         c.gridy = 1;
         menuPanel.add(management,c);
 
         JButton stationMaintenance = new JButton("Station maintenance");
+        try {
+            Image img = ImageIO.read(getClass().getResource("../../img/maintenance.png"));
+            stationMaintenance.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         c.gridy = 2;
         menuPanel.add(stationMaintenance,c);
 
