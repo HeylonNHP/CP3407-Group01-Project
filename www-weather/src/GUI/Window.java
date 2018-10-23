@@ -1,5 +1,6 @@
 package GUI;
 
+import GUI.Panels.PastWeather;
 import GUI.Panels.StartScreen;
 import GUI.Panels.StationViewer;
 import database.WeatherStation;
@@ -36,6 +37,13 @@ public class Window {
     public static void showStationViewer(WeatherStation station){
         mainWindow.getContentPane().removeAll();
         mainWindow.add(new StationViewer(station));
+        mainWindow.revalidate();
+        mainWindow.repaint();
+    }
+
+    public static void showStationPastWeather(WeatherStation station){
+        mainWindow.getContentPane().removeAll();
+        mainWindow.add(new PastWeather(station));
         mainWindow.revalidate();
         mainWindow.repaint();
     }

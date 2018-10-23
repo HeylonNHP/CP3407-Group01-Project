@@ -118,6 +118,10 @@ public class StationViewer extends JPanel{
         backButton.addActionListener((e) -> {
             Window.showStartScreen();
         });
+
+        pastWeather.addActionListener((e) ->{
+            Window.showStationPastWeather(station);
+        });
     }
 
     private void populateStationList(){
