@@ -1,6 +1,7 @@
 package GUI.Panels;
 
 import GUI.*;
+import GUI.Window;
 import database.Reading;
 import database.WeatherStation;
 
@@ -52,6 +53,9 @@ public class PastWeather extends JPanel {
         c.gridwidth = 2;
         //Nest inside a JScrollPane so columnNames are displayed
         add(new JScrollPane(weatherDataTable),c);
+
+        //Event listeners
+        backButton.addActionListener((e -> Window.showStationViewer(station)));
     }
 
     private String[][] getWeatherData(WeatherStation station) throws java.sql.SQLException{
