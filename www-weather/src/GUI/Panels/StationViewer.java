@@ -131,6 +131,7 @@ public class StationViewer extends JPanel{
             for(WeatherStation station : stationList) {
                 stationSelector.insertItemAt(station, stationSelector.getItemCount());
             }
+            stationSelector.setSelectedIndex(0);
         }
         catch (Exception ex){
             System.out.println("Exception error!");
