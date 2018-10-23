@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
- * Created by jc282222 on 19/10/18.
+ * Created by AlexCSilva && HeylonNHP on 19/10/18.
  */
 
 public class Main {
