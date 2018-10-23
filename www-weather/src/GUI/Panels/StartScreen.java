@@ -83,7 +83,24 @@ public class StartScreen extends JPanel {
             Window.showStationViewer(new WeatherStation(1,"test",1));
         });
 
-        loginButton.addActionListener((e -> Window.showLoginScreen()));
+        loginButton.addActionListener((e -> {
+            if(!Window.isLoggedIn()){
+                Window.showLoginScreen();
+            }else{
+                Window.setLoggedIn(false);
+                Window.showStartScreen();
+            }
+
+
+        }));
+
+        stationMaintenance.addActionListener((e) ->{
+            if(Window.isLoggedIn()){
+                Window.showStationMaintenance();
+            }else {
+                JOptionPane.showMessageDialog(null, "This requires administrator priviledges");
+            }
+        });
     }
 
 

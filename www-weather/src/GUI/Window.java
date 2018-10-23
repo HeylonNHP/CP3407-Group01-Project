@@ -1,9 +1,6 @@
 package GUI;
 
-import GUI.Panels.LoginScreen;
-import GUI.Panels.PastWeather;
-import GUI.Panels.StartScreen;
-import GUI.Panels.StationViewer;
+import GUI.Panels.*;
 import database.WeatherStation;
 
 import javax.swing.*;
@@ -53,6 +50,13 @@ public class Window {
     public static void showStationPastWeather(WeatherStation station){
         mainWindow.getContentPane().removeAll();
         mainWindow.add(new PastWeather(station));
+        mainWindow.revalidate();
+        mainWindow.repaint();
+    }
+
+    public static void showStationMaintenance(){
+        mainWindow.getContentPane().removeAll();
+        mainWindow.add(new StationMaintenance());
         mainWindow.revalidate();
         mainWindow.repaint();
     }
