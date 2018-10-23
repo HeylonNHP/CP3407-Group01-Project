@@ -1,5 +1,6 @@
 package GUI;
 
+import GUI.Panels.LoginScreen;
 import GUI.Panels.PastWeather;
 import GUI.Panels.StartScreen;
 import GUI.Panels.StationViewer;
@@ -30,6 +31,13 @@ public class Window {
     public static void showStartScreen(){
         mainWindow.getContentPane().removeAll();
         mainWindow.add(new StartScreen());
+        mainWindow.revalidate();
+        mainWindow.repaint();
+    }
+
+    public static void showLoginScreen(){
+        mainWindow.getContentPane().removeAll();
+        mainWindow.add(new LoginScreen());
         mainWindow.revalidate();
         mainWindow.repaint();
     }

@@ -76,6 +76,8 @@ public class StartScreen extends JPanel {
         weatherStations.addActionListener((e) -> {
             Window.showStationViewer(new WeatherStation(1,"test",1));
         });
+
+        loginButton.addActionListener((e -> Window.showLoginScreen()));
     }
 
 

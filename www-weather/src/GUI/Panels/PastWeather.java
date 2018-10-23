@@ -50,6 +50,7 @@ public class PastWeather extends JPanel {
         c.gridx = 0;
         c.gridy = 1;
         c.gridwidth = 2;
+        //Nest inside a JScrollPane so columnNames are displayed
         add(new JScrollPane(weatherDataTable),c);
     }
 
