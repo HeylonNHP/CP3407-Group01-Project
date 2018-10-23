@@ -1,6 +1,7 @@
 package GUI.Panels;
 
 import GUI.Window;
+import database.Reading;
 import database.WeatherStation;
 
 import javax.swing.*;
@@ -122,6 +123,14 @@ public class StationViewer extends JPanel{
         pastWeather.addActionListener((e) ->{
             Window.showStationPastWeather(station);
         });
+
+        stationSelector.addActionListener((e) -> {
+            try{
+                populateDataFields();
+            }catch (java.sql.SQLException ex){
+                ex.printStackTrace();
+            }
+        });
     }
 
     private void populateStationList(){
@@ -136,5 +145,17 @@ public class StationViewer extends JPanel{
         catch (Exception ex){
             System.out.println("Exception error!");
         }
+    }
+
+    private void populateDataFields() throws java.sql.SQLException{
+        Reading currentReading = database.databaseInterface.getWeatherStationReadings((WeatherStation) stationSelector.getSelectedItem())[0];
+
+        tempText.setText(String.valueOf(currentReading.getReadingTemperature()));
+        pressText.setText(String.valueOf(currentReading.getReadingPressure()));
+        sunText.setText(String.valueOf(currentReading.getReadingUVindex()));
+        rainText.setText(String.valueOf(currentReading.getReadingRainfall()));
+        windSpeedText.setText(String.valueOf(currentReading.getReadingWindSpeed()));
+        windDirectionText.setText(String.valueOf(currentReading.getReadingWindDirection()));
+
     }
 }
