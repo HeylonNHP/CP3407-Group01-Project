@@ -14,7 +14,7 @@ public class Main {
     public static void main(String args[]){
         System.out.print("Hello world!");
 
-        /*
+
         database.databaseInterface.connectToDatabase();
         database.databaseInterface.testQuery();
 
@@ -29,7 +29,7 @@ public class Main {
         }catch (java.sql.SQLException ex){
             ex.printStackTrace();
         }
-        */
+
         GUI.Window.showWindow();
     }
 }
