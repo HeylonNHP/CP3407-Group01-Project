@@ -4,6 +4,7 @@ import GUI.Window;
 import com.sun.glass.ui.Size;
 import database.WeatherStation;
 
+import javax.imageio.ImageIO;
 import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
@@ -22,8 +23,14 @@ public class StartScreen extends JPanel {
         Dimension windowSize = Window.getSize();
 
         //Login button
-        JButton loginButton = new JButton("Login");
-        loginButton.setBounds(windowSize.width - 150, 50,100,25);
+        System.out.println(Window.isLoggedIn());
+        String loginButtonText = "Administration login";
+        if(Window.isLoggedIn()){
+            loginButtonText = "Logout";
+        }
+
+        JButton loginButton = new JButton(loginButtonText);
+        loginButton.setBounds(windowSize.width - 250, 50,200,25);
         add(loginButton);
 
         //Menu panel
@@ -35,6 +42,12 @@ public class StartScreen extends JPanel {
         GridBagConstraints c = new GridBagConstraints();
 
         JButton weatherStations = new JButton("Weather Stations");
+        try {
+            Image img = ImageIO.read(getClass().getResource("../../img/station.png"));
+            weatherStations.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         c.gridx = 0;
         c.gridy = 0;
         c.fill = GridBagConstraints.BOTH;
@@ -44,10 +57,22 @@ public class StartScreen extends JPanel {
         menuPanel.add(weatherStations,c);
 
         JButton management = new JButton("Management");
+        try {
+            Image img = ImageIO.read(getClass().getResource("../../img/management.png"));
+            management.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         c.gridy = 1;
         menuPanel.add(management,c);
 
         JButton stationMaintenance = new JButton("Station maintenance");
+        try {
+            Image img = ImageIO.read(getClass().getResource("../../img/maintenance.png"));
+            stationMaintenance.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         c.gridy = 2;
         menuPanel.add(stationMaintenance,c);
 
@@ -56,6 +81,25 @@ public class StartScreen extends JPanel {
         //Event listeners
         weatherStations.addActionListener((e) -> {
             Window.showStationViewer(new WeatherStation(1,"test",1));
+        });
+
+        loginButton.addActionListener((e -> {
+            if(!Window.isLoggedIn()){
+                Window.showLoginScreen();
+            }else{
+                Window.setLoggedIn(false);
+                Window.showStartScreen();
+            }
+
+
+        }));
+
+        stationMaintenance.addActionListener((e) ->{
+            if(Window.isLoggedIn()){
+                Window.showStationMaintenance();
+            }else {
+                JOptionPane.showMessageDialog(null, "This requires administrator priviledges");
+            }
         });
     }
 
