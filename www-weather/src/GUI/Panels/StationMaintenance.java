@@ -1,6 +1,7 @@
 package GUI.Panels;
 
 import GUI.*;
+import GUI.Window;
 import database.WeatherStation;
 
 import javax.swing.*;
@@ -25,9 +26,8 @@ public class StationMaintenance extends JPanel {
         add(panelTitle);
 
         JButton backButton = new JButton("< Back");
-        backButton.setBounds(size.width - 150, 25, 100, 25);
+        backButton.setBounds(size.width - 125, 25, 100, 25);
         add(backButton);
-
 
         stationListPanel.setBackground(Color.cyan);
         JScrollPane scrollPanel = new JScrollPane(stationListPanel);
@@ -69,6 +69,11 @@ public class StationMaintenance extends JPanel {
                 stationPanel.add(scheduleMaintenance,c);
 
                 stationListPanel.add(stationPanel);
+
+                //Event listeners
+                scheduleMaintenance.addActionListener((e) ->{
+                    Window.showMaintenanceScheduler(station);
+                });
             }
         }catch (Exception ex){
             ex.printStackTrace();
