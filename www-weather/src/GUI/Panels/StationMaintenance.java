@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
  */
 public class StationMaintenance extends JPanel {
 
-    JPanel stationListPanel = new JPanel(new GridLayout());
+    JPanel stationListPanel = new JPanel();
 
     public StationMaintenance(){
         super(null);
@@ -63,6 +63,7 @@ public class StationMaintenance extends JPanel {
             }
         }*/
 
+        stationListPanel.setLayout(new BoxLayout(stationListPanel,BoxLayout.Y_AXIS));
         stationListPanel.setBackground(Color.cyan);
         JScrollPane scrollPanel = new JScrollPane(stationListPanel);
         stationListPanel.setAutoscrolls(true);
