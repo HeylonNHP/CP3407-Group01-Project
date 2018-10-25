@@ -18,14 +18,14 @@ public class StationMaintenance extends JPanel {
 
     JPanel stationListPanel = new JPanel();
 
-    public StationMaintenance(){
+    public StationMaintenance() {
         super(null);
 
         Dimension size = GUI.Window.getSize();
         setPreferredSize(size);
 
         JLabel panelTitle = new JLabel("<html><div style='text-align: center;'>Station Maintenance</div></html>");
-        panelTitle.setBounds(0,25,size.width,50);
+        panelTitle.setBounds(0, 25, size.width, 50);
         System.out.printf("Title width: %s", panelTitle.getWidth());
         add(panelTitle);
 
@@ -50,15 +50,15 @@ public class StationMaintenance extends JPanel {
         notificationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menu.show(notificationButton, notificationButton.getWidth()/2, notificationButton.getHeight()/2);
+                menu.show(notificationButton, notificationButton.getWidth() / 2, notificationButton.getHeight() / 2);
             }
-        } );
+        });
 
-        stationListPanel.setLayout(new BoxLayout(stationListPanel,BoxLayout.Y_AXIS));
+        stationListPanel.setLayout(new BoxLayout(stationListPanel, BoxLayout.Y_AXIS));
         stationListPanel.setBackground(Color.cyan);
         JScrollPane scrollPanel = new JScrollPane(stationListPanel);
         stationListPanel.setAutoscrolls(true);
-        scrollPanel.setBounds(100,150,400,300);
+        scrollPanel.setBounds(100, 150, 400, 300);
         add(scrollPanel);
 
         populateStationListPanel();
@@ -66,11 +66,11 @@ public class StationMaintenance extends JPanel {
         backButton.addActionListener((e) -> GUI.Window.showStartScreen());
     }
 
-    private void populateStationListPanel(){
-        try{
+    private void populateStationListPanel() {
+        try {
             WeatherStation[] stations = database.databaseInterface.getWeatherStationList();
 
-            for(WeatherStation station : stations){
+            for (WeatherStation station : stations) {
                 JPanel stationPanel = new JPanel(new GridBagLayout());
                 GridBagConstraints c = new GridBagConstraints();
 
@@ -78,30 +78,30 @@ public class StationMaintenance extends JPanel {
                 c.gridy = 0;
 
                 JLabel stationName = new JLabel(station.getStationName());
-                stationPanel.add(stationName,c);
+                stationPanel.add(stationName, c);
 
                 JLabel statusLabel = new JLabel("Status: ");
                 c.gridx = 1;
-                stationPanel.add(statusLabel,c);
+                stationPanel.add(statusLabel, c);
 
                 JLabel statusDisplayLabel = new JLabel(station.getStationPowerStatus() == 1 ? "Online" : "Offline");
                 c.gridx = 2;
-                stationPanel.add(statusDisplayLabel,c);
+                stationPanel.add(statusDisplayLabel, c);
 
                 JButton scheduleMaintenance = new JButton("Schedule maintenance");
                 c.gridx = 1;
                 c.gridy = 1;
                 c.gridwidth = 2;
-                stationPanel.add(scheduleMaintenance,c);
+                stationPanel.add(scheduleMaintenance, c);
 
                 stationListPanel.add(stationPanel);
 
                 //Event listeners
-                scheduleMaintenance.addActionListener((e) ->{
+                scheduleMaintenance.addActionListener((e) -> {
                     Window.showMaintenanceScheduler(station);
                 });
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 

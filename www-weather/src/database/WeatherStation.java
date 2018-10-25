@@ -5,7 +5,7 @@ public class WeatherStation {
     String stationName;
     int stationPowerStatus;
 
-    public WeatherStation(int ID, String Name, int PowerStatus){
+    public WeatherStation(int ID, String Name, int PowerStatus) {
         setStationID(ID);
         setStationName(Name);
         setStationPowerStatus(PowerStatus);

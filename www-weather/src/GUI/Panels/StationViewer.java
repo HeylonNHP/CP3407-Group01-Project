@@ -7,7 +7,7 @@ import database.WeatherStation;
 import javax.swing.*;
 import java.awt.*;
 
-public class StationViewer extends JPanel{
+public class StationViewer extends JPanel {
 
     JComboBox<WeatherStation> stationSelector = new JComboBox<>();
     JTextField tempText = new JTextField("69");
@@ -18,25 +18,25 @@ public class StationViewer extends JPanel{
     JTextField windSpeedText = new JTextField("69");
     JTextField windDirectionText = new JTextField("69");
 
-    public StationViewer(WeatherStation station){
+    public StationViewer(WeatherStation station) {
         setLayout(null);
         Dimension size = Window.getSize();
         setPreferredSize(size);
 
         //Station selector combobox
 
-        stationSelector.setBounds(25,25,200,25);
+        stationSelector.setBounds(25, 25, 200, 25);
         add(stationSelector);
 
         //Back button
         JButton backButton = new JButton("< Back");
-        backButton.setBounds(size.width - 125,25,100,25);
+        backButton.setBounds(size.width - 125, 25, 100, 25);
         add(backButton);
 
         //Weather stats panel
         JPanel weatherStats = new JPanel(new GridBagLayout());
         weatherStats.setBackground(Color.lightGray);
-        weatherStats.setBounds((size.width/2) - 200,100,400,250);
+        weatherStats.setBounds((size.width / 2) - 200, 100, 400, 250);
         GridBagConstraints c = new GridBagConstraints();
 
         c.gridx = 0;
@@ -46,89 +46,89 @@ public class StationViewer extends JPanel{
         c.weighty = 1;
         //Temperature
         JLabel tempLabel = new JLabel("Temperature");
-        weatherStats.add(tempLabel,c);
+        weatherStats.add(tempLabel, c);
 
 
         tempText.setEditable(false);
         c.gridx = 1;
-        weatherStats.add(tempText,c);
+        weatherStats.add(tempText, c);
 
         //Humidity
         JLabel humidityLabel = new JLabel("Humidity");
         c.gridx = 0;
         c.gridy = 1;
-        weatherStats.add(humidityLabel,c);
+        weatherStats.add(humidityLabel, c);
 
         humidityText.setEditable(false);
         c.gridx = 1;
-        weatherStats.add(humidityText,c);
+        weatherStats.add(humidityText, c);
 
         //Pressure
         JLabel pressLabel = new JLabel("Pressure");
         c.gridx = 0;
         c.gridy = 2;
-        weatherStats.add(pressLabel,c);
+        weatherStats.add(pressLabel, c);
 
 
         pressText.setEditable(false);
         c.gridx = 1;
-        weatherStats.add(pressText,c);
+        weatherStats.add(pressText, c);
 
         //Sunshine
         JLabel sunLabel = new JLabel("Sunshine");
         c.gridx = 0;
         c.gridy = 3;
-        weatherStats.add(sunLabel,c);
+        weatherStats.add(sunLabel, c);
 
 
         sunText.setEditable(false);
         c.gridx = 1;
-        weatherStats.add(sunText,c);
+        weatherStats.add(sunText, c);
 
         //Rainfall
         JLabel rainLabel = new JLabel("Rainfall");
         c.gridx = 0;
         c.gridy = 4;
-        weatherStats.add(rainLabel,c);
+        weatherStats.add(rainLabel, c);
 
 
         rainText.setEditable(false);
         c.gridx = 1;
-        weatherStats.add(rainText,c);
+        weatherStats.add(rainText, c);
 
         //Wind speed
         JLabel windSpeedLabel = new JLabel("Wind Speed");
         c.gridx = 0;
         c.gridy = 5;
-        weatherStats.add(windSpeedLabel,c);
+        weatherStats.add(windSpeedLabel, c);
 
 
         windSpeedText.setEditable(false);
         c.gridx = 1;
-        weatherStats.add(windSpeedText,c);
+        weatherStats.add(windSpeedText, c);
 
         //Wind direction
         JLabel windDirectionLabel = new JLabel("Wind direction");
         c.gridx = 0;
         c.gridy = 6;
-        weatherStats.add(windDirectionLabel,c);
+        weatherStats.add(windDirectionLabel, c);
 
 
         windDirectionText.setEditable(false);
         c.gridx = 1;
-        weatherStats.add(windDirectionText,c);
+        weatherStats.add(windDirectionText, c);
 
         add(weatherStats);
 
         //Past weather
         JButton pastWeather = new JButton("Past Weather");
-        pastWeather.setBounds(25,400,200,25);
+        pastWeather.setBounds(25, 400, 200, 25);
         add(pastWeather);
 
-        try{
+        try {
             populateStationList();
             populateDataFields();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
@@ -137,43 +137,42 @@ public class StationViewer extends JPanel{
             Window.showStartScreen();
         });
 
-        pastWeather.addActionListener((e) ->{
+        pastWeather.addActionListener((e) -> {
             Window.showStationPastWeather((WeatherStation) stationSelector.getSelectedItem());
         });
 
         stationSelector.addActionListener((e) -> {
-            try{
+            try {
                 populateDataFields();
-            }catch (java.sql.SQLException ex){
+            } catch (java.sql.SQLException ex) {
                 ex.printStackTrace();
             }
         });
     }
 
-    private void populateStationList(){
+    private void populateStationList() {
         try {
             WeatherStation[] stationList = database.databaseInterface.getWeatherStationList();
             stationSelector.removeAllItems();
-            for(WeatherStation station : stationList) {
+            for (WeatherStation station : stationList) {
                 stationSelector.insertItemAt(station, stationSelector.getItemCount());
             }
             stationSelector.setSelectedIndex(0);
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception error!");
         }
     }
 
-    private void populateDataFields() throws java.sql.SQLException{
+    private void populateDataFields() throws java.sql.SQLException {
         Reading[] stationReadings = database.databaseInterface.getWeatherStationReadings((WeatherStation) stationSelector.getSelectedItem());
-        Reading currentReading = stationReadings[stationReadings.length-1];
+        Reading currentReading = stationReadings[stationReadings.length - 1];
 
         tempText.setText(String.format("%s°c", currentReading.getReadingTemperature()));
-        humidityText.setText(String.format("%s%%",currentReading.getReadingHumidity()));
+        humidityText.setText(String.format("%s%%", currentReading.getReadingHumidity()));
         pressText.setText(String.format("%s hPa", currentReading.getReadingPressure()));
         sunText.setText(String.format("%s", currentReading.getReadingUVindex()));
         rainText.setText(String.format("%s mm", currentReading.getReadingRainfall()));
-        windSpeedText.setText(String.format("%s km/h",currentReading.getReadingWindSpeed()));
+        windSpeedText.setText(String.format("%s km/h", currentReading.getReadingWindSpeed()));
         windDirectionText.setText(String.format("%s°", currentReading.getReadingWindDirection()));
 
     }

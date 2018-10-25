@@ -9,6 +9,7 @@ import java.util.TimerTask;
  */
 public class WeatherUpdater {
     private static Timer weatherUpdateTimer = new Timer();
+
     static {
 
         /*
@@ -23,54 +24,52 @@ public class WeatherUpdater {
 
     }
 
-    public static void beginFetchingUpdates(){
-        int updateIntervalMinutes = 5*60*1000;
-        while (true){
+    public static void beginFetchingUpdates() {
+        int updateIntervalMinutes = 5 * 60 * 1000;
+        while (true) {
             getWeatherUpdate();
-            try{
+            try {
                 Thread.sleep(updateIntervalMinutes);
-            }catch (Exception ex){
+            } catch (Exception ex) {
 
             }
         }
     }
 
-    private static void getWeatherUpdate(){
+    private static void getWeatherUpdate() {
         WundergroundWeatherReceiver test = new WundergroundWeatherReceiver("townsville");
 
         Reading testReading = test.getCurrentReading();
 
-        try{
-            database.databaseInterface.submitReading(1,testReading);
-        }catch (Exception ex){
+        try {
+            database.databaseInterface.submitReading(1, testReading);
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         WundergroundWeatherReceiver test2 = new WundergroundWeatherReceiver("brisbane");
         Reading test2Reading = test2.getCurrentReading();
-        try{
-            database.databaseInterface.submitReading(2,test2Reading);
-        }catch (Exception ex){
+        try {
+            database.databaseInterface.submitReading(2, test2Reading);
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
 
-
-
         WundergroundWeatherReceiver test4 = new WundergroundWeatherReceiver("ingham");
         Reading test4Reading = test4.getCurrentReading();
-        try{
-            database.databaseInterface.submitReading(4,test4Reading);
-        }catch (Exception ex){
+        try {
+            database.databaseInterface.submitReading(4, test4Reading);
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
 
         WundergroundWeatherReceiver test3 = new WundergroundWeatherReceiver("cairns");
         Reading test3Reading = test3.getCurrentReading();
-        try{
-            database.databaseInterface.submitReading(3,test3Reading);
-        }catch (Exception ex){
+        try {
+            database.databaseInterface.submitReading(3, test3Reading);
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

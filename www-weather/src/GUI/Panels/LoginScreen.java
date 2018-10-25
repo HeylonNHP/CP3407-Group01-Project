@@ -20,7 +20,7 @@ public class LoginScreen extends JPanel {
     JTextField usernameField = new JTextField("");
     JPasswordField passwordField = new JPasswordField("");
 
-    public LoginScreen(){
+    public LoginScreen() {
         super(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.weightx = 1;
@@ -35,37 +35,37 @@ public class LoginScreen extends JPanel {
         JLabel loginScreenLabel = new JLabel("<html><h1>Administration login </h1></html>");
         c.gridx = 0;
         c.gridy = 0;
-        add(loginScreenLabel,c);
+        add(loginScreenLabel, c);
 
         //Back button
         JButton backButton = new JButton("< Back");
         c.gridx = 1;
-        add(backButton,c);
+        add(backButton, c);
 
         // Username fields
         JLabel usernameLabel = new JLabel("Username: ");
         c.gridx = 0;
         c.gridy = 2;
-        add(usernameLabel,c);
+        add(usernameLabel, c);
 
 
         c.gridx = 1;
-        add(usernameField,c);
+        add(usernameField, c);
 
         JLabel passwordLabel = new JLabel("Password: ");
         c.gridx = 0;
         c.gridy = 3;
-        add(passwordLabel,c);
+        add(passwordLabel, c);
 
 
         c.gridx = 1;
         c.gridy = 3;
-        add(passwordField,c);
+        add(passwordField, c);
 
         // login confirmation buttons
         JButton confirmButton = new JButton("Login");
         c.gridy = 4;
-        add(confirmButton,c);
+        add(confirmButton, c);
         confirmButton.registerKeyboardAction(confirmButton.getActionForKeyStroke(
                 KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false)),
                 KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),
@@ -80,15 +80,15 @@ public class LoginScreen extends JPanel {
         backButton.addActionListener((e -> Window.showStartScreen()));
 
         confirmButton.addActionListener((e) -> {
-            try{
+            try {
                 logIn();
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
     }
 
-    private void logIn() throws java.sql.SQLException{
+    private void logIn() throws java.sql.SQLException {
         AdminUser[] adminUsers = database.databaseInterface.getAdminUsers();
 
         String username = usernameField.getText();
@@ -96,10 +96,10 @@ public class LoginScreen extends JPanel {
 
         System.out.printf("Username: %s Password: %s", username, password);
 
-        for(AdminUser user : adminUsers){
+        for (AdminUser user : adminUsers) {
             System.out.printf("");
-            if(username.equals(user.getUserName())){
-                if(password.equals(user.getPassword())){
+            if (username.equals(user.getUserName())) {
+                if (password.equals(user.getPassword())) {
                     JOptionPane.showMessageDialog(null, String.format("Logged in successfully, Welcome %s %s", user.getFirstName(),
                             user.getLastName()));
                     Window.setLoggedIn(true);

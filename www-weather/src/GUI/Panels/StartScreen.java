@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
 public class StartScreen extends JPanel {
-    public StartScreen(){
+    public StartScreen() {
         setLayout(null);
         System.out.println(Window.getSize());
         Dimension size = Window.getSize();
@@ -25,18 +25,18 @@ public class StartScreen extends JPanel {
         //Login button
         System.out.println(Window.isLoggedIn());
         String loginButtonText = "Administration login";
-        if(Window.isLoggedIn()){
+        if (Window.isLoggedIn()) {
             loginButtonText = "Logout";
         }
 
         JButton loginButton = new JButton(loginButtonText);
-        loginButton.setBounds(windowSize.width - 250, 50,200,25);
+        loginButton.setBounds(windowSize.width - 250, 50, 200, 25);
         add(loginButton);
 
         //Menu panel
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new GridBagLayout());
-        menuPanel.setBounds((windowSize.width/2) - 150, 100,300, 300);
+        menuPanel.setBounds((windowSize.width / 2) - 150, 100, 300, 300);
         menuPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Menu"));
 
         GridBagConstraints c = new GridBagConstraints();
@@ -54,7 +54,7 @@ public class StartScreen extends JPanel {
         c.weighty = 1;
         c.weightx = 1;
 
-        menuPanel.add(weatherStations,c);
+        menuPanel.add(weatherStations, c);
 
         JButton management = new JButton("Management");
         try {
@@ -64,7 +64,7 @@ public class StartScreen extends JPanel {
             ex.printStackTrace();
         }
         c.gridy = 1;
-        menuPanel.add(management,c);
+        menuPanel.add(management, c);
 
         JButton stationMaintenance = new JButton("Station maintenance");
         try {
@@ -74,19 +74,19 @@ public class StartScreen extends JPanel {
             ex.printStackTrace();
         }
         c.gridy = 2;
-        menuPanel.add(stationMaintenance,c);
+        menuPanel.add(stationMaintenance, c);
 
         add(menuPanel);
 
         //Event listeners
         weatherStations.addActionListener((e) -> {
-            Window.showStationViewer(new WeatherStation(1,"test",1));
+            Window.showStationViewer(new WeatherStation(1, "test", 1));
         });
 
         loginButton.addActionListener((e -> {
-            if(!Window.isLoggedIn()){
+            if (!Window.isLoggedIn()) {
                 Window.showLoginScreen();
-            }else{
+            } else {
                 Window.setLoggedIn(false);
                 Window.showStartScreen();
             }
@@ -94,15 +94,14 @@ public class StartScreen extends JPanel {
 
         }));
 
-        stationMaintenance.addActionListener((e) ->{
-            if(Window.isLoggedIn()){
+        stationMaintenance.addActionListener((e) -> {
+            if (Window.isLoggedIn()) {
                 Window.showStationMaintenance();
-            }else {
-                JOptionPane.showMessageDialog(null, "This requires administrator priviledges");
+            } else {
+                JOptionPane.showMessageDialog(null, "This requires administrator privileges");
             }
         });
     }
-
 
 
     @Override
