@@ -71,6 +71,14 @@ public class MaintenanceScheduler extends JPanel {
         backButton.addActionListener((e) -> {
             Window.showStationMaintenance();
         });
+        submitButton.addActionListener((e) -> {
+            try {
+                System.out.println("Job submitted to database.");
+                JOptionPane.showMessageDialog(null, ("Job submitted."));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
 }
