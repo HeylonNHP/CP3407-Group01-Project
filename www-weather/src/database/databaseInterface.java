@@ -94,4 +94,22 @@ public class databaseInterface {
         return (Reading[])readings.toArray(new Reading[0]);
     }
 
+    public static AdminUser[] getAdminUsers() throws java.sql.SQLException{
+        List<AdminUser> adminUserList = new ArrayList<>();
+
+
+        String query = "SELECT * FROM weatherdata.Admin_User;";
+        try(Statement stmt = con.createStatement()){
+            try(ResultSet rset = stmt.executeQuery(query)){
+                while (rset.next()){
+                    AdminUser adminUser = new AdminUser(rset.getInt(1), rset.getString(2),rset.getString(3),rset.getString(4),
+                            rset.getString(5), rset.getString(6),rset.getString(7));
+                    adminUserList.add(adminUser);
+                }
+            }
+        }
+
+        return (AdminUser[])adminUserList.toArray(new AdminUser[0]);
+    }
+
 }

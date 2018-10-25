@@ -34,4 +34,9 @@ public class WeatherStation {
     public void setStationPowerStatus(int stationPowerStatus) {
         this.stationPowerStatus = stationPowerStatus;
     }
+
+    @Override
+    public String toString() {
+        return getStationName();
+    }
 }
