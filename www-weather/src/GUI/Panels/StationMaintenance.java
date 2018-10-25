@@ -3,7 +3,9 @@ package GUI.Panels;
 import GUI.*;
 import GUI.Window;
 import database.WeatherStation;
+import sun.font.TrueTypeFont;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
@@ -28,6 +30,26 @@ public class StationMaintenance extends JPanel {
         JButton backButton = new JButton("< Back");
         backButton.setBounds(size.width - 125, 25, 100, 25);
         add(backButton);
+
+        JButton notificationButton = new JButton("");
+        notificationButton.setBounds(size.width - 50, 35, 50, 25);
+        notificationButton.setLocation(12, 90);
+        try {
+            Image img = ImageIO.read(getClass().getResource("../../img/no_notifications.png"));
+            notificationButton.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        add(notificationButton);
+
+        /*if(gotNotifications()){
+            try {
+                Image img = ImageIO.read(getClass().getResource("../../img/notifications.png"));
+                notificationButton.setIcon(new ImageIcon(img));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }*/
 
         stationListPanel.setBackground(Color.cyan);
         JScrollPane scrollPanel = new JScrollPane(stationListPanel);
