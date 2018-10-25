@@ -127,7 +127,7 @@ public class StationViewer extends JPanel{
         });
 
         pastWeather.addActionListener((e) ->{
-            Window.showStationPastWeather(station);
+            Window.showStationPastWeather((WeatherStation) stationSelector.getSelectedItem());
         });
 
         stationSelector.addActionListener((e) -> {
@@ -154,14 +154,15 @@ public class StationViewer extends JPanel{
     }
 
     private void populateDataFields() throws java.sql.SQLException{
-        Reading currentReading = database.databaseInterface.getWeatherStationReadings((WeatherStation) stationSelector.getSelectedItem())[0];
+        Reading[] stationReadings = database.databaseInterface.getWeatherStationReadings((WeatherStation) stationSelector.getSelectedItem());
+        Reading currentReading = stationReadings[stationReadings.length-1];
 
-        tempText.setText(String.valueOf(currentReading.getReadingTemperature()));
-        pressText.setText(String.valueOf(currentReading.getReadingPressure()));
-        sunText.setText(String.valueOf(currentReading.getReadingUVindex()));
-        rainText.setText(String.valueOf(currentReading.getReadingRainfall()));
-        windSpeedText.setText(String.valueOf(currentReading.getReadingWindSpeed()));
-        windDirectionText.setText(String.valueOf(currentReading.getReadingWindDirection()));
+        tempText.setText(String.format("%s°c", currentReading.getReadingTemperature()));
+        pressText.setText(String.format("%s hPa", currentReading.getReadingPressure()));
+        sunText.setText(String.format("%s", currentReading.getReadingUVindex()));
+        rainText.setText(String.format("%s mm", currentReading.getReadingRainfall()));
+        windSpeedText.setText(String.format("%s km/h",currentReading.getReadingWindSpeed()));
+        windDirectionText.setText(String.format("%s°", currentReading.getReadingWindDirection()));
 
     }
 }

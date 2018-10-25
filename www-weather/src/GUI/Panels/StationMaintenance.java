@@ -54,15 +54,6 @@ public class StationMaintenance extends JPanel {
             }
         } );
 
-        /*if(gotNotifications()){
-            try {
-                Image img = ImageIO.read(getClass().getResource("../../img/notifications.png"));
-                notificationButton.setIcon(new ImageIcon(img));
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }*/
-
         stationListPanel.setLayout(new BoxLayout(stationListPanel,BoxLayout.Y_AXIS));
         stationListPanel.setBackground(Color.cyan);
         JScrollPane scrollPanel = new JScrollPane(stationListPanel);
