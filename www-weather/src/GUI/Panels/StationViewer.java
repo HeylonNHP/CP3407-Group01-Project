@@ -11,6 +11,7 @@ public class StationViewer extends JPanel{
 
     JComboBox<WeatherStation> stationSelector = new JComboBox<>();
     JTextField tempText = new JTextField("69");
+    JTextField humidityText = new JTextField("");
     JTextField pressText = new JTextField("6969");
     JTextField sunText = new JTextField("69");
     JTextField rainText = new JTextField("69");
@@ -52,10 +53,20 @@ public class StationViewer extends JPanel{
         c.gridx = 1;
         weatherStats.add(tempText,c);
 
+        //Humidity
+        JLabel humidityLabel = new JLabel("Humidity");
+        c.gridx = 0;
+        c.gridy = 1;
+        weatherStats.add(humidityLabel,c);
+
+        humidityText.setEditable(false);
+        c.gridx = 1;
+        weatherStats.add(humidityText,c);
+
         //Pressure
         JLabel pressLabel = new JLabel("Pressure");
         c.gridx = 0;
-        c.gridy = 1;
+        c.gridy = 2;
         weatherStats.add(pressLabel,c);
 
 
@@ -66,7 +77,7 @@ public class StationViewer extends JPanel{
         //Sunshine
         JLabel sunLabel = new JLabel("Sunshine");
         c.gridx = 0;
-        c.gridy = 2;
+        c.gridy = 3;
         weatherStats.add(sunLabel,c);
 
 
@@ -77,7 +88,7 @@ public class StationViewer extends JPanel{
         //Rainfall
         JLabel rainLabel = new JLabel("Rainfall");
         c.gridx = 0;
-        c.gridy = 3;
+        c.gridy = 4;
         weatherStats.add(rainLabel,c);
 
 
@@ -88,7 +99,7 @@ public class StationViewer extends JPanel{
         //Wind speed
         JLabel windSpeedLabel = new JLabel("Wind Speed");
         c.gridx = 0;
-        c.gridy = 4;
+        c.gridy = 5;
         weatherStats.add(windSpeedLabel,c);
 
 
@@ -99,7 +110,7 @@ public class StationViewer extends JPanel{
         //Wind direction
         JLabel windDirectionLabel = new JLabel("Wind direction");
         c.gridx = 0;
-        c.gridy = 5;
+        c.gridy = 6;
         weatherStats.add(windDirectionLabel,c);
 
 
@@ -158,6 +169,7 @@ public class StationViewer extends JPanel{
         Reading currentReading = stationReadings[stationReadings.length-1];
 
         tempText.setText(String.format("%s°c", currentReading.getReadingTemperature()));
+        humidityText.setText(String.format("%s%%",currentReading.getReadingHumidity()));
         pressText.setText(String.format("%s hPa", currentReading.getReadingPressure()));
         sunText.setText(String.format("%s", currentReading.getReadingUVindex()));
         rainText.setText(String.format("%s mm", currentReading.getReadingRainfall()));
