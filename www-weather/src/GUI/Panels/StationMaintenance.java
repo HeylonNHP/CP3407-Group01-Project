@@ -8,6 +8,8 @@ import sun.font.TrueTypeFont;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by jc300556 on 23/10/18.
@@ -41,6 +43,16 @@ public class StationMaintenance extends JPanel {
             ex.printStackTrace();
         }
         add(notificationButton);
+        final JPopupMenu menu = new JPopupMenu("Notification menu");
+        menu.add("Notification: Test1");
+        menu.add("Notification: Test2");
+        menu.add("Notification: Test3");
+        notificationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menu.show(notificationButton, notificationButton.getWidth()/2, notificationButton.getHeight()/2);
+            }
+        } );
 
         /*if(gotNotifications()){
             try {
