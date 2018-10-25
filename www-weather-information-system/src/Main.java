@@ -8,6 +8,13 @@ public class Main {
         WundergroundWeatherReceiver test = new WundergroundWeatherReceiver("townsville");
 
         Reading testReading = test.getCurrentReading();
+        database.databaseInterface.connectToDatabase();
+        try{
+            database.databaseInterface.submitReading(2,testReading);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
 
     }
 }
