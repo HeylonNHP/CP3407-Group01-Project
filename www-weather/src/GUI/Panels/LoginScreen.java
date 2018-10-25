@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javax.swing.*;
 import javax.swing.tree.ExpandVetoException;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.security.PublicKey;
 
 /**
@@ -65,6 +66,15 @@ public class LoginScreen extends JPanel {
         JButton confirmButton = new JButton("Login");
         c.gridy = 4;
         add(confirmButton,c);
+        confirmButton.registerKeyboardAction(confirmButton.getActionForKeyStroke(
+                KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false)),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
+
+        confirmButton.registerKeyboardAction(confirmButton.getActionForKeyStroke(
+                KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, true)),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
 
         //Event listeners
         backButton.addActionListener((e -> Window.showStartScreen()));
