@@ -42,7 +42,7 @@ public class PastWeather extends JPanel {
         try{
             rowData = getWeatherData(station);
         }catch (Exception ex){
-
+            ex.printStackTrace();
         }
         JTable weatherDataTable = new JTable(rowData,columnNames);
 
@@ -61,10 +61,19 @@ public class PastWeather extends JPanel {
     private String[][] getWeatherData(WeatherStation station) throws java.sql.SQLException{
         Reading[] readings = database.databaseInterface.getWeatherStationReadings(station);
 
+        System.out.printf("Total readings: %s", readings.length);
+
         String[][] readings2D = new String[readings.length][8];
 
         for(int i = 0; i < readings.length; ++i){
+            System.out.printf("Reading #%s",i);
             Reading reading = readings[i];
+            if(reading == null){
+                continue;
+            }
+
+            System.out.println(reading == null);
+
             String[] readingArray = new String[] {reading.getReadingDate().toString(), String.valueOf(reading.getReadingUVindex()),
             String.valueOf(reading.getReadingHumidity()),String.valueOf(reading.getReadingTemperature()),
             String.valueOf(reading.getReadingPressure()),String.valueOf(reading.getReadingRainfall()),
