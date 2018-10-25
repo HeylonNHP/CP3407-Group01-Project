@@ -10,7 +10,7 @@ public class Main {
         Reading testReading = test.getCurrentReading();
         database.databaseInterface.connectToDatabase();
         try{
-            database.databaseInterface.submitReading(2,testReading);
+            database.databaseInterface.submitReading(1,testReading);
         }catch (Exception ex){
             ex.printStackTrace();
         }
