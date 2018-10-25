@@ -9,6 +9,7 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class MaintenanceScheduler extends JPanel {
     public MaintenanceScheduler(WeatherStation station){
@@ -55,6 +56,15 @@ public class MaintenanceScheduler extends JPanel {
         c.gridy = 3;
         c.gridwidth = 2;
         add(submitButton,c);
+        submitButton.registerKeyboardAction(submitButton.getActionForKeyStroke(
+                KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false)),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
+
+        submitButton.registerKeyboardAction(submitButton.getActionForKeyStroke(
+                KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, true)),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
 
 
         //Event listeners
