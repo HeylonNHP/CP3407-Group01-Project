@@ -15,6 +15,8 @@ public class WundergroundWeatherReceiver extends WeatherReceiver {
         String pageData = getPageData(stationName);
         System.out.println(pageData);
 
+        boolean imperialUnits = false;
+
         float temperatureF = -1;
         float pressureInches = -1;
         int uvIndex = -1;
@@ -23,10 +25,21 @@ public class WundergroundWeatherReceiver extends WeatherReceiver {
         int windDirection = -1;
         int humidity = -1;
 
+        //Check units
+        Pattern MY_PATTERN = Pattern.compile("\"units_nosymbol\":\"([CF])\"");
+        Matcher m = MY_PATTERN.matcher(pageData);
+        while (m.find()) {
+            String s = m.group(1);
+            System.out.printf("Found Units: %s\n", s);
+            if(s.equals("F")){
+                imperialUnits = true;
+            }
+            // s now contains "BAR"
+        }
 
         //Temperature
-        Pattern MY_PATTERN = Pattern.compile("\"temperature\":([0-9]+[.][0-9]+)");
-        Matcher m = MY_PATTERN.matcher(pageData);
+        MY_PATTERN = Pattern.compile("\"temperature\":([0-9]+[.][0-9]+|[0-9]+)");
+        m = MY_PATTERN.matcher(pageData);
         while (m.find()) {
             String s = m.group(1);
             System.out.printf("Found temp: %s\n", s);
@@ -98,10 +111,14 @@ public class WundergroundWeatherReceiver extends WeatherReceiver {
             // s now contains "BAR"
         }
 
-        //int temperatureC = Integer.parseInt(farenheitToCelcius(temperatureF) + "");
-        int temperatureC = (int)farenheitToCelcius(temperatureF);
-        //int pressurePascals = Integer.parseInt(mercuryInchesToPascals(pressureInches) + "");
-        int pressurePascals = (int)mercuryInchesToPascals(pressureInches) / 100;
+        //Unit conversions
+        int temperatureC = (int)temperatureF;
+        int pressurePascals = (int)pressureInches;
+        if(imperialUnits){
+            temperatureC = (int)farenheitToCelcius(temperatureF);
+            pressurePascals = (int)mercuryInchesToPascals(pressureInches) / 100;
+        }
+
 
         Reading reading = new Reading(uvIndex,humidity,temperatureC,(int)windSpeed,windDirection,pressurePascals,(int)rainfall);
 
