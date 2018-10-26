@@ -76,6 +76,11 @@ public class Window {
         mainWindow.repaint();
     }
 
+    public static void requestRepaint(){
+        mainWindow.revalidate();
+        mainWindow.repaint();
+    }
+
     public static Dimension getSize() {
         return mainWindow.getSize();
     }
