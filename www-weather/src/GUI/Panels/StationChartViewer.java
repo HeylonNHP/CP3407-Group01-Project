@@ -39,6 +39,11 @@ public class StationChartViewer extends JPanel {
         //Attribute selector
         attributeSelector.addItem("Temperature");
         attributeSelector.addItem("Humidity");
+        attributeSelector.addItem("Pressure");
+        attributeSelector.addItem("UV index");
+        attributeSelector.addItem("Rainfall");
+        attributeSelector.addItem("Wind speed");
+        attributeSelector.addItem("Wind direction");
         attributeSelector.setBounds(25, 25, 200, 25);
         add(attributeSelector);
 
@@ -108,6 +113,21 @@ public class StationChartViewer extends JPanel {
                 }
                 if (attributeSelector.getSelectedItem().equals("Humidity")) {
                     currentSum += reading.getReadingHumidity();
+                }
+                if (attributeSelector.getSelectedItem().equals("Pressure")) {
+                    currentSum += reading.getReadingPressure();
+                }
+                if (attributeSelector.getSelectedItem().equals("UV index")) {
+                    currentSum += reading.getReadingUVindex();
+                }
+                if (attributeSelector.getSelectedItem().equals("Rainfall")) {
+                    currentSum += reading.getReadingRainfall();
+                }
+                if (attributeSelector.getSelectedItem().equals("Wind speed")) {
+                    currentSum += reading.getReadingWindSpeed();
+                }
+                if (attributeSelector.getSelectedItem().equals("Wind direction")) {
+                    currentSum += reading.getReadingWindDirection();
                 }
 
                 currentIterations += 1;
