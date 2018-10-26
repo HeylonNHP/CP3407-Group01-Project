@@ -147,7 +147,7 @@ public class StationViewer extends JPanel {
         });
 
         chartViewer.addActionListener((e) ->{
-            Window.showStationChartViewer(station);
+            Window.showStationChartViewer((WeatherStation) stationSelector.getSelectedItem());
         });
 
         stationSelector.addActionListener((e) -> {

@@ -11,6 +11,11 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Array;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 public class StationChartViewer extends JPanel {
 
@@ -63,7 +68,19 @@ public class StationChartViewer extends JPanel {
             Reading[] readings = database.databaseInterface.getWeatherStationReadings(station);
             DefaultCategoryDataset chartData = new DefaultCategoryDataset();
 
+            //Get time 24 hrs ago
+            Instant instant = Instant.now().minus(24, ChronoUnit.HOURS);
+            Timestamp timestamp = Timestamp.from(instant);
+
+            //Cull old data
+            ArrayList<Reading> timeFrameReadings = new ArrayList<>();
             for(Reading reading : readings){
+                if(reading.getReadingDate().after(timestamp)){
+                    timeFrameReadings.add(reading);
+                }
+            }
+
+            for(Reading reading : timeFrameReadings){
                 if(attributeSelector.getSelectedItem().equals("Temperature")){
                     chartData.addValue(reading.getReadingTemperature(),"Temperature",reading.getReadingDate().toString());
                 }else if(attributeSelector.getSelectedItem().equals("Humidity")){
