@@ -125,6 +125,11 @@ public class StationViewer extends JPanel {
         pastWeather.setBounds(25, 400, 200, 25);
         add(pastWeather);
 
+        //View chart
+        JButton chartViewer = new JButton("View charts");
+        chartViewer.setBounds(size.width - 125, 400, 100, 25);
+        add(chartViewer);
+
         try {
             populateStationList();
             populateDataFields();
@@ -139,6 +144,10 @@ public class StationViewer extends JPanel {
 
         pastWeather.addActionListener((e) -> {
             Window.showStationPastWeather((WeatherStation) stationSelector.getSelectedItem());
+        });
+
+        chartViewer.addActionListener((e) ->{
+            Window.showStationChartViewer(station);
         });
 
         stationSelector.addActionListener((e) -> {

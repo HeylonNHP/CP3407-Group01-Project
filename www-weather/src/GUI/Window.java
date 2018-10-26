@@ -48,6 +48,13 @@ public class Window {
         mainWindow.repaint();
     }
 
+    public static void showStationChartViewer(WeatherStation station) {
+        mainWindow.getContentPane().removeAll();
+        mainWindow.add(new StationChartViewer(station));
+        mainWindow.revalidate();
+        mainWindow.repaint();
+    }
+
     public static void showStationPastWeather(WeatherStation station) {
         mainWindow.getContentPane().removeAll();
         mainWindow.add(new PastWeather(station));
