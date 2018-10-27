@@ -132,6 +132,13 @@ public class StationViewer extends JPanel {
 
         try {
             populateStationList();
+
+            for(int i = 0; i < stationSelector.getItemCount(); ++i){
+                if (station.getStationName().equals(stationSelector.getItemAt(i).getStationName())){
+                    stationSelector.setSelectedIndex(i);
+                }
+            }
+
             populateDataFields();
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -20,6 +20,7 @@ import java.util.List;
 public class StationSelectorMap extends JPanel {
 
     JMapViewer map = new JMapViewer();
+    WeatherStation[] stations = new  WeatherStation[]{};
 
     public StationSelectorMap(){
         setLayout(null);
@@ -48,6 +49,12 @@ public class StationSelectorMap extends JPanel {
             Window.showStartScreen();
         });
 
+        //Get weather stations
+        try{
+            stations = database.databaseInterface.getWeatherStationList();
+        }catch (Exception ex){
+
+        }
 
 
         map.addMouseListener(new MouseAdapter() {
@@ -80,6 +87,11 @@ public class StationSelectorMap extends JPanel {
                             // if the radius is smaller then 23 (radius of a ball is 5), then it must be on the dot
                             if (radCircle < 8){
                                 System.out.printf("Clicked: %s - Name: %s\n",mapMarker.toString(),mapMarker.getName());
+                                for(WeatherStation station: stations){
+                                    if(mapMarker.getName().equals(station.getStationName())){
+                                        Window.showStationViewer(station);
+                                    }
+                                }
                             }
 
                         }
