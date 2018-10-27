@@ -101,6 +101,10 @@ public class StartScreen extends JPanel {
                 JOptionPane.showMessageDialog(null, "This requires administrator privileges");
             }
         });
+
+        management.addActionListener((e) -> {
+            Window.showStationSelectorMap();
+        });
     }
 
 
