@@ -9,6 +9,8 @@ import java.awt.*;
 
 public class StationViewer extends JPanel {
 
+    public static boolean backToMap = false;
+
     JComboBox<WeatherStation> stationSelector = new JComboBox<>();
     JTextField tempText = new JTextField("69");
     JTextField humidityText = new JTextField("");
@@ -127,7 +129,7 @@ public class StationViewer extends JPanel {
 
         //View chart
         JButton chartViewer = new JButton("View charts");
-        chartViewer.setBounds(size.width - 125, 400, 100, 25);
+        chartViewer.setBounds(size.width - 175, 400, 150, 25);
         add(chartViewer);
 
         try {
@@ -146,7 +148,11 @@ public class StationViewer extends JPanel {
 
         //Event listeners
         backButton.addActionListener((e) -> {
-            Window.showStartScreen();
+            if(backToMap){
+                Window.showStationSelectorMap();
+            }else {
+                Window.showStartScreen();
+            }
         });
 
         pastWeather.addActionListener((e) -> {

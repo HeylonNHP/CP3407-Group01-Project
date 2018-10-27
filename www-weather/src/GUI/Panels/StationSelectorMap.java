@@ -56,7 +56,6 @@ public class StationSelectorMap extends JPanel {
 
         }
 
-
         map.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -89,6 +88,7 @@ public class StationSelectorMap extends JPanel {
                                 System.out.printf("Clicked: %s - Name: %s\n",mapMarker.toString(),mapMarker.getName());
                                 for(WeatherStation station: stations){
                                     if(mapMarker.getName().equals(station.getStationName())){
+                                        StationViewer.backToMap = true;
                                         Window.showStationViewer(station);
                                     }
                                 }
