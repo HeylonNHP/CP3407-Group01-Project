@@ -80,7 +80,7 @@ public class StartScreen extends JPanel {
 
         //Event listeners
         weatherStations.addActionListener((e) -> {
-            Window.showStationViewer(new WeatherStation(1, "test", 1));
+            Window.showStationViewer(new WeatherStation(1, "test", 1, 0,0));
         });
 
         loginButton.addActionListener((e -> {

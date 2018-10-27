@@ -1,6 +1,7 @@
 package GUI.Panels;
 
 import GUI.Window;
+import database.WeatherStation;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
@@ -17,6 +18,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class StationSelectorMap extends JPanel {
+
+    JMapViewer map = new JMapViewer();
+
     public StationSelectorMap(){
         setLayout(null);
         Dimension size = Window.getSize();
@@ -28,15 +32,16 @@ public class StationSelectorMap extends JPanel {
         add(backButton);
 
         //Map panel
-        JMapViewer map = new JMapViewer();
+
         map.setBounds(50,55,size.width-100,size.height-120);
         map.setDisplayPosition(new Coordinate(-27.470125,153.021072),5);
 
         add(map);
 
-        //Map market
-        MapMarker marker1 = new MapMarkerDot("Townsville marker",new Coordinate(-19.258965,146.816956));
-        map.addMapMarker(marker1);
+        //Map marker
+        //MapMarker marker1 = new MapMarkerDot("Townsville marker",new Coordinate(-19.258965,146.816956));
+        //map.addMapMarker(marker1);
+        populateMapWithWeatherStations();
 
         //Event listeners
         backButton.addActionListener((e) ->{
@@ -122,5 +127,19 @@ public class StationSelectorMap extends JPanel {
                 super.mouseMoved(e);
             }
         });
+    }
+
+    private void populateMapWithWeatherStations(){
+
+        try{
+            WeatherStation[] stations = database.databaseInterface.getWeatherStationList();
+
+            for(WeatherStation station : stations){
+                MapMarker marker = new MapMarkerDot(station.getStationName(),new Coordinate(station.getLatitude(),station.getLongitude()));
+                map.addMapMarker(marker);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

@@ -65,7 +65,7 @@ public class databaseInterface {
                 while (rset.next()) {
                     System.out.println("Weather station: " + rset.getString(2));
                     WeatherStation station = new WeatherStation(Integer.parseInt(rset.getString(1)), rset.getString(2),
-                            Integer.parseInt(rset.getString(3)));
+                            Integer.parseInt(rset.getString(3)),rset.getDouble(4), rset.getDouble(5));
                     weatherStations.add(station);
 
                 }

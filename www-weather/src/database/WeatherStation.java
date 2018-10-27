@@ -5,10 +5,15 @@ public class WeatherStation {
     String stationName;
     int stationPowerStatus;
 
-    public WeatherStation(int ID, String Name, int PowerStatus) {
+    double latitude;
+    double longitude;
+
+    public WeatherStation(int ID, String Name, int PowerStatus, double latitude, double longitude) {
         setStationID(ID);
         setStationName(Name);
         setStationPowerStatus(PowerStatus);
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getStationID() {
@@ -33,6 +38,14 @@ public class WeatherStation {
 
     public void setStationPowerStatus(int stationPowerStatus) {
         this.stationPowerStatus = stationPowerStatus;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 
     @Override
