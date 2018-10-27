@@ -56,15 +56,15 @@ public class StartScreen extends JPanel {
 
         menuPanel.add(weatherStations, c);
 
-        JButton management = new JButton("Management");
+        JButton viewMap = new JButton("View Map");
         try {
-            Image img = ImageIO.read(getClass().getResource("../../img/management.png"));
-            management.setIcon(new ImageIcon(img));
+            Image img = ImageIO.read(getClass().getResource("../../img/view_map.png"));
+            viewMap.setIcon(new ImageIcon(img));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         c.gridy = 1;
-        menuPanel.add(management, c);
+        menuPanel.add(viewMap, c);
 
         JButton stationMaintenance = new JButton("Station maintenance");
         try {
@@ -103,7 +103,7 @@ public class StartScreen extends JPanel {
             }
         });
 
-        management.addActionListener((e) -> {
+        viewMap.addActionListener((e) -> {
             Window.showStationSelectorMap();
         });
     }
