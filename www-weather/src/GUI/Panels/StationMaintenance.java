@@ -2,6 +2,7 @@ package GUI.Panels;
 
 import GUI.*;
 import GUI.Window;
+import database.MaintenanceSchedule;
 import database.WeatherStation;
 import sun.font.TrueTypeFont;
 
@@ -44,9 +45,28 @@ public class StationMaintenance extends JPanel {
         }
         add(notificationButton);
         final JPopupMenu menu = new JPopupMenu("Notification menu");
-        menu.add("Notification: Test1");
-        menu.add("Notification: Test2");
-        menu.add("Notification: Test3");
+
+        try{
+            MaintenanceSchedule[] scheduleList = database.databaseInterface.getMaintenanceSchedules(false);
+            WeatherStation[] stations = database.databaseInterface.getWeatherStationList();
+
+            for(MaintenanceSchedule schedule: scheduleList){
+                for(WeatherStation station: stations){
+                    if(schedule.getStationID() == station.getStationID()){
+                        JMenuItem item = new JMenuItem(String.format("%s station requires repair on %s",station.getStationName(), schedule.getDate().toString()));
+                        item.addActionListener((e)->{
+                            String message = String.format("<html><h1>%s Station</h1><br><b>Repair notes: </b>%s<br><b>Scheduled date: </b>%s</html>",
+                                    station.getStationName(),schedule.getNotes(),schedule.getDate().toString());
+                            JOptionPane.showMessageDialog(null,message);
+                        });
+                        menu.add(item);
+                    }
+                }
+
+            }
+        }catch (Exception ex){
+
+        }
         notificationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
