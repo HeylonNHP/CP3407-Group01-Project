@@ -1,9 +1,6 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,6 +107,17 @@ public class databaseInterface {
         }
 
         return (AdminUser[]) adminUserList.toArray(new AdminUser[0]);
+    }
+
+    public static void submitMaintenanceSchedule(WeatherStation station, String notes, Date date) throws java.sql.SQLException{
+        String query = "INSERT INTO `weatherdata`.`ScheduledMaintenance` (`Station_ID`, `ScheduledMaintenance_Notes`, `ScheduledMaintenance_Date`) VALUES (?, ?, ?);";
+
+        PreparedStatement preparedStatement = con.prepareStatement(query);
+        preparedStatement.setInt(1,station.getStationID());
+        preparedStatement.setString(2,notes);
+        preparedStatement.setDate(3,date);
+
+        preparedStatement.execute();
     }
 
 }
