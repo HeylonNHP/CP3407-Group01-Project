@@ -88,7 +88,7 @@ public class databaseInterface {
                 }
             }
         }
-        return (Reading[]) readings.toArray(new Reading[0]);
+        return readings.toArray(new Reading[0]);
     }
 
     public static AdminUser[] getAdminUsers() throws java.sql.SQLException {
@@ -118,6 +118,22 @@ public class databaseInterface {
         preparedStatement.setDate(3,date);
 
         preparedStatement.execute();
+    }
+
+    public static MaintenanceSchedule[] getMaintenanceSchedules(boolean excludePastDue) throws java.sql.SQLException{
+        List<MaintenanceSchedule> scheduleList = new ArrayList<>();
+
+        String query = "SELECT * FROM weatherdata.ScheduledMaintenance;";
+
+        try (Statement stmt = con.createStatement()) {
+            try (ResultSet rset = stmt.executeQuery(query)) {
+                while (rset.next()) {
+                    scheduleList.add(new MaintenanceSchedule(rset.getInt(1),rset.getInt(2),rset.getString(3), rset.getDate(4)));
+                }
+            }
+        }
+
+        return scheduleList.toArray(new MaintenanceSchedule[0]);
     }
 
 }
