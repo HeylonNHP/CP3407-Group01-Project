@@ -7,12 +7,14 @@ public class MaintenanceSchedule {
     int stationID;
     String notes;
     Date date;
+    boolean completed;
 
-    public MaintenanceSchedule(int maintenanceID, int stationID, String notes, Date date) {
+    public MaintenanceSchedule(int maintenanceID, int stationID, String notes, Date date, boolean completed) {
         this.maintenanceID = maintenanceID;
         this.stationID = stationID;
         this.notes = notes;
         this.date = date;
+        this.completed = completed;
     }
 
     public int getMaintenanceID() {
@@ -29,5 +31,9 @@ public class MaintenanceSchedule {
 
     public Date getDate() {
         return date;
+    }
+
+    public boolean isCompleted() {
+        return completed;
     }
 }

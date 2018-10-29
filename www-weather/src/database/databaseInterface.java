@@ -110,25 +110,31 @@ public class databaseInterface {
     }
 
     public static void submitMaintenanceSchedule(WeatherStation station, String notes, Date date) throws java.sql.SQLException{
-        String query = "INSERT INTO `weatherdata`.`ScheduledMaintenance` (`Station_ID`, `ScheduledMaintenance_Notes`, `ScheduledMaintenance_Date`) VALUES (?, ?, ?);";
+        String query = "INSERT INTO `weatherdata`.`ScheduledMaintenance` (`Station_ID`, `ScheduledMaintenance_Notes`, `ScheduledMaintenance_Date` , " +
+                "`ScheduledMaintenance_Completed`) VALUES (?, ?, ?, ?);";
 
         PreparedStatement preparedStatement = con.prepareStatement(query);
         preparedStatement.setInt(1,station.getStationID());
         preparedStatement.setString(2,notes);
         preparedStatement.setDate(3,date);
+        preparedStatement.setBoolean(4,false);
 
         preparedStatement.execute();
     }
 
-    public static MaintenanceSchedule[] getMaintenanceSchedules(boolean excludePastDue) throws java.sql.SQLException{
+    public static MaintenanceSchedule[] getMaintenanceSchedules(boolean excludeCompleted) throws java.sql.SQLException{
         List<MaintenanceSchedule> scheduleList = new ArrayList<>();
 
         String query = "SELECT * FROM weatherdata.ScheduledMaintenance;";
 
+        if(excludeCompleted){
+            query = "SELECT * FROM weatherdata.ScheduledMaintenance where ScheduledMaintenance_Completed != 1;";
+        }
+
         try (Statement stmt = con.createStatement()) {
             try (ResultSet rset = stmt.executeQuery(query)) {
                 while (rset.next()) {
-                    scheduleList.add(new MaintenanceSchedule(rset.getInt(1),rset.getInt(2),rset.getString(3), rset.getDate(4)));
+                    scheduleList.add(new MaintenanceSchedule(rset.getInt(1),rset.getInt(2),rset.getString(3), rset.getDate(4),rset.getBoolean(5)));
                 }
             }
         }
