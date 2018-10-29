@@ -43,7 +43,7 @@ public class StartScreen extends JPanel {
 
         JButton weatherStations = new JButton("Weather Stations");
         try {
-            Image img = ImageIO.read(getClass().getResource("../../img/station.png"));
+            Image img = ImageIO.read(getClass().getResource("img/station.png"));
             weatherStations.setIcon(new ImageIcon(img));
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -58,7 +58,7 @@ public class StartScreen extends JPanel {
 
         JButton viewMap = new JButton("View Map");
         try {
-            Image img = ImageIO.read(getClass().getResource("../../img/view_map.png"));
+            Image img = ImageIO.read(getClass().getResource("img/view_map.png"));
             viewMap.setIcon(new ImageIcon(img));
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -68,7 +68,7 @@ public class StartScreen extends JPanel {
 
         JButton stationMaintenance = new JButton("Station maintenance");
         try {
-            Image img = ImageIO.read(getClass().getResource("../../img/maintenance.png"));
+            Image img = ImageIO.read(getClass().getResource("img/maintenance.png"));
             stationMaintenance.setIcon(new ImageIcon(img));
         } catch (Exception ex) {
             ex.printStackTrace();
