@@ -57,7 +57,17 @@ public class StationMaintenance extends JPanel {
                         item.addActionListener((e)->{
                             String message = String.format("<html><h1>%s Station</h1><br><b>Repair notes: </b>%s<br><b>Scheduled date: </b>%s</html>",
                                     station.getStationName(),schedule.getNotes(),schedule.getDate().toString());
-                            JOptionPane.showMessageDialog(null,message);
+                            String[] options = new String[] {"Completed", "OK"};
+                            int response = JOptionPane.showOptionDialog(null,message,"title", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+                            switch (response) {
+                                case 0:
+                                    //item.remove();
+                                    break;
+                                case 1:
+                                    break;
+                                default:
+                                    break;
+                            }
                         });
                         menu.add(item);
                     }
