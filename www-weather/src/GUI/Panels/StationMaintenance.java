@@ -26,8 +26,8 @@ public class StationMaintenance extends JPanel {
         Dimension size = GUI.Window.getSize();
         setPreferredSize(size);
 
-        JLabel panelTitle = new JLabel("<html><div style='text-align: center;'>Station Maintenance</div></html>");
-        panelTitle.setBounds(0, 25, size.width, 50);
+        JLabel panelTitle = new JLabel("<html><div style='text-align: center;'><h1>Station Maintenance</h1></div></html>");
+        panelTitle.setBounds(25, 25, size.width, 50);
         System.out.printf("Title width: %s", panelTitle.getWidth());
         add(panelTitle);
 
@@ -36,8 +36,8 @@ public class StationMaintenance extends JPanel {
         add(backButton);
 
         JButton notificationButton = new JButton("");
-        notificationButton.setBounds(size.width - 50, 35, 50, 25);
-        notificationButton.setLocation(12, 90);
+        notificationButton.setBounds(size.width - 125, 60, 50, 25);
+        //notificationButton.setLocation(12, 90);
         try {
             Image img = ImageIO.read(getClass().getResource("img/no_notifications.png"));
             notificationButton.setIcon(new ImageIcon(img));
@@ -65,6 +65,14 @@ public class StationMaintenance extends JPanel {
                                     try{
                                         database.databaseInterface.setMaintenanceScheduleCompleted(schedule,true);
                                         menu.remove(item);
+                                        if (menu.getComponentCount() == 0) {
+                                            try {
+                                                Image img = ImageIO.read(getClass().getResource("img/no_notifications.png"));
+                                                notificationButton.setIcon(new ImageIcon(img));
+                                            } catch (Exception ex) {
+                                                ex.printStackTrace();
+                                            }
+                                        }
                                     }catch (Exception ex){
                                         ex.printStackTrace();
                                     }
@@ -103,7 +111,7 @@ public class StationMaintenance extends JPanel {
         stationListPanel.setBackground(Color.cyan);
         JScrollPane scrollPanel = new JScrollPane(stationListPanel);
         stationListPanel.setAutoscrolls(true);
-        scrollPanel.setBounds(100, 150, 400, 300);
+        scrollPanel.setBounds(25, 110, size.width-50, size.height-(150+25));
         add(scrollPanel);
 
         populateStationListPanel();

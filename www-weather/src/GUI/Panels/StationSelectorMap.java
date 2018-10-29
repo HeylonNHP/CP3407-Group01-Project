@@ -32,6 +32,10 @@ public class StationSelectorMap extends JPanel {
         backButton.setBounds(size.width - 125, 25, 100, 25);
         add(backButton);
 
+        JLabel titleLabel = new JLabel("Map view");
+        titleLabel.setBounds(25, 25, 100, 25);
+        add(titleLabel);
+
         //Map panel
 
         map.setBounds(50,55,size.width-100,size.height-120);
