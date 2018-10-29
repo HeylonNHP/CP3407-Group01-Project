@@ -142,4 +142,12 @@ public class databaseInterface {
         return scheduleList.toArray(new MaintenanceSchedule[0]);
     }
 
+    public static void setMaintenanceScheduleCompleted(MaintenanceSchedule shedule, boolean completed) throws java.sql.SQLException{
+        String query = String.format("UPDATE weatherdata.`ScheduledMaintenance` SET ScheduledMaintenance_Completed = ? WHERE (ScheduledMaintenance_ID = ?);");
+        PreparedStatement preparedStatement = con.prepareStatement(query);
+        preparedStatement.setInt(2,shedule.getMaintenanceID());
+        preparedStatement.setBoolean(1,completed);
+        preparedStatement.executeUpdate();
+    }
+
 }

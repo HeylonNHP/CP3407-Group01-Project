@@ -8,6 +8,7 @@ import sun.font.TrueTypeFont;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.tree.ExpandVetoException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +48,7 @@ public class StationMaintenance extends JPanel {
         final JPopupMenu menu = new JPopupMenu("Notification menu");
 
         try{
-            MaintenanceSchedule[] scheduleList = database.databaseInterface.getMaintenanceSchedules(false);
+            MaintenanceSchedule[] scheduleList = database.databaseInterface.getMaintenanceSchedules(true);
             WeatherStation[] stations = database.databaseInterface.getWeatherStationList();
 
             for(MaintenanceSchedule schedule: scheduleList){
@@ -55,13 +56,19 @@ public class StationMaintenance extends JPanel {
                     if(schedule.getStationID() == station.getStationID()){
                         JMenuItem item = new JMenuItem(String.format("%s station requires repair on %s",station.getStationName(), schedule.getDate().toString()));
                         item.addActionListener((e)->{
-                            String message = String.format("<html><h1>%s Station</h1><br><b>Repair notes: </b>%s<br><b>Scheduled date: </b>%s</html>",
-                                    station.getStationName(),schedule.getNotes(),schedule.getDate().toString());
+                            String message = String.format("<html><h1>%s Station</h1><br><b>Repair notes: </b>%s<br>Is completed: %s<br><b>Scheduled date: </b>%s</html>",
+                                    station.getStationName(),schedule.getNotes(),schedule.isCompleted(),schedule.getDate().toString());
                             String[] options = new String[] {"Completed", "OK"};
                             int response = JOptionPane.showOptionDialog(null,message,"title", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
                             switch (response) {
                                 case 0:
-                                    //item.remove();
+                                    try{
+                                        database.databaseInterface.setMaintenanceScheduleCompleted(schedule,true);
+                                        menu.remove(item);
+                                    }catch (Exception ex){
+                                        ex.printStackTrace();
+                                    }
+
                                     break;
                                 case 1:
                                     break;
