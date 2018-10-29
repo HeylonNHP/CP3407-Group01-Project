@@ -38,7 +38,7 @@ public class StationMaintenance extends JPanel {
         notificationButton.setBounds(size.width - 50, 35, 50, 25);
         notificationButton.setLocation(12, 90);
         try {
-            Image img = ImageIO.read(getClass().getResource("../../img/no_notifications.png"));
+            Image img = ImageIO.read(getClass().getResource("/img/no_notifications.png"));
             notificationButton.setIcon(new ImageIcon(img));
         } catch (Exception ex) {
             ex.printStackTrace();
