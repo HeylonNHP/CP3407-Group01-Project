@@ -20,9 +20,9 @@ import java.util.List;
 public class StationSelectorMap extends JPanel {
 
     JMapViewer map = new JMapViewer();
-    WeatherStation[] stations = new  WeatherStation[]{};
+    WeatherStation[] stations = new WeatherStation[]{};
 
-    public StationSelectorMap(){
+    public StationSelectorMap() {
         setLayout(null);
         Dimension size = Window.getSize();
         setPreferredSize(size);
@@ -38,8 +38,8 @@ public class StationSelectorMap extends JPanel {
 
         //Map panel
 
-        map.setBounds(50,55,size.width-100,size.height-120);
-        map.setDisplayPosition(new Coordinate(-27.470125,153.021072),5);
+        map.setBounds(50, 55, size.width - 100, size.height - 120);
+        map.setDisplayPosition(new Coordinate(-27.470125, 153.021072), 5);
 
         add(map);
 
@@ -49,14 +49,14 @@ public class StationSelectorMap extends JPanel {
         populateMapWithWeatherStations();
 
         //Event listeners
-        backButton.addActionListener((e) ->{
+        backButton.addActionListener((e) -> {
             Window.showStartScreen();
         });
 
         //Get weather stations
-        try{
+        try {
             stations = database.databaseInterface.getWeatherStationList();
-        }catch (Exception ex){
+        } catch (Exception ex) {
 
         }
 
@@ -67,11 +67,11 @@ public class StationSelectorMap extends JPanel {
 
                 System.out.printf("Click?\n");
 
-                if(e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON1){
+                if (e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON1) {
 
                     Point p = e.getPoint();
-                    int X = p.x+3;
-                    int Y = p.y+3;
+                    int X = p.x + 3;
+                    int Y = p.y + 3;
                     List<MapMarker> ar = map.getMapMarkerList();
                     Iterator<MapMarker> i = ar.iterator();
                     while (i.hasNext()) {
@@ -79,19 +79,19 @@ public class StationSelectorMap extends JPanel {
                         MapMarker mapMarker = (MapMarker) i.next();
 
                         Point MarkerPosition = map.getMapPosition(mapMarker.getLat(), mapMarker.getLon());
-                        if( MarkerPosition != null){
+                        if (MarkerPosition != null) {
 
-                            int centerX =  MarkerPosition.x;
+                            int centerX = MarkerPosition.x;
                             int centerY = MarkerPosition.y;
 
                             // calculate the radius from the touch to the center of the dot
-                            double radCircle  = Math.sqrt( (((centerX-X)*(centerX-X)) + (centerY-Y)*(centerY-Y)));
+                            double radCircle = Math.sqrt((((centerX - X) * (centerX - X)) + (centerY - Y) * (centerY - Y)));
 
                             // if the radius is smaller then 23 (radius of a ball is 5), then it must be on the dot
-                            if (radCircle < 8){
-                                System.out.printf("Clicked: %s - Name: %s\n",mapMarker.toString(),mapMarker.getName());
-                                for(WeatherStation station: stations){
-                                    if(mapMarker.getName().equals(station.getStationName())){
+                            if (radCircle < 8) {
+                                System.out.printf("Clicked: %s - Name: %s\n", mapMarker.toString(), mapMarker.getName());
+                                for (WeatherStation station : stations) {
+                                    if (mapMarker.getName().equals(station.getStationName())) {
                                         StationViewer.backToMap = true;
                                         Window.showStationViewer(station);
                                     }
@@ -145,16 +145,16 @@ public class StationSelectorMap extends JPanel {
         });
     }
 
-    private void populateMapWithWeatherStations(){
+    private void populateMapWithWeatherStations() {
 
-        try{
+        try {
             WeatherStation[] stations = database.databaseInterface.getWeatherStationList();
 
-            for(WeatherStation station : stations){
-                MapMarker marker = new MapMarkerDot(station.getStationName(),new Coordinate(station.getLatitude(),station.getLongitude()));
+            for (WeatherStation station : stations) {
+                MapMarker marker = new MapMarkerDot(station.getStationName(), new Coordinate(station.getLatitude(), station.getLongitude()));
                 map.addMapMarker(marker);
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

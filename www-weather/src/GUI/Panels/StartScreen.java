@@ -1,15 +1,11 @@
 package GUI.Panels;
 
 import GUI.Window;
-import com.sun.glass.ui.Size;
 import database.WeatherStation;
 
 import javax.imageio.ImageIO;
-import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeListener;
 
 public class StartScreen extends JPanel {
     public StartScreen() {
@@ -81,7 +77,7 @@ public class StartScreen extends JPanel {
         //Event listeners
         weatherStations.addActionListener((e) -> {
             StationViewer.backToMap = false;
-            Window.showStationViewer(new WeatherStation(1, "test", 1, 0,0));
+            Window.showStationViewer(new WeatherStation(1, "test", 1, 0, 0));
         });
 
         loginButton.addActionListener((e -> {

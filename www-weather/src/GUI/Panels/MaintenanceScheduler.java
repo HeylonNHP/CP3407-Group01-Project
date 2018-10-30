@@ -8,7 +8,6 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 
@@ -74,17 +73,17 @@ public class MaintenanceScheduler extends JPanel {
         });
         submitButton.addActionListener((e) -> {
             try {
-                Date date = new Date(model.getYear()-1900,model.getMonth(),model.getDay());
+                Date date = new Date(model.getYear() - 1900, model.getMonth(), model.getDay());
                 String notes = notesInput.getText();
 
-                database.databaseInterface.submitMaintenanceSchedule(station,notes,date);
+                database.databaseInterface.submitMaintenanceSchedule(station, notes, date);
 
                 System.out.println("Job submitted to database.");
                 JOptionPane.showMessageDialog(null, ("Job submitted."));
 
                 Window.showStationMaintenance();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null,"Submission failure");
+                JOptionPane.showMessageDialog(null, "Submission failure");
                 ex.printStackTrace();
             }
         });

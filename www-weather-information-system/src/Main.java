@@ -1,5 +1,5 @@
-import WeatherReceiver.WundergroundWeatherReceiver;
-import database.Reading;
+/*import WeatherReceiver.WundergroundWeatherReceiver;
+import database.Reading;*/
 
 public class Main {
     public static void main(String[] args) {
