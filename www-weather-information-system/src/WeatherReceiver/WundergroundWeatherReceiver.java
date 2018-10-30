@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WundergroundWeatherReceiver extends WeatherReceiver {
-    public WundergroundWeatherReceiver(String stationName){
+    public WundergroundWeatherReceiver(String stationName) {
         super(stationName);
     }
 
@@ -31,7 +31,7 @@ public class WundergroundWeatherReceiver extends WeatherReceiver {
         while (m.find()) {
             String s = m.group(1);
             System.out.printf("Found Units: %s\n", s);
-            if(s.equals("F")){
+            if (s.equals("F")) {
                 imperialUnits = true;
             }
             // s now contains "BAR"
@@ -64,7 +64,7 @@ public class WundergroundWeatherReceiver extends WeatherReceiver {
         while (m.find()) {
             String s = m.group(1);
             System.out.printf("Found UV: %s\n", s);
-            if(uvCount == 3){
+            if (uvCount == 3) {
                 uvIndex = Integer.parseInt(s);
             }
             uvCount++;
@@ -112,15 +112,15 @@ public class WundergroundWeatherReceiver extends WeatherReceiver {
         }
 
         //Unit conversions
-        int temperatureC = (int)temperatureF;
-        int pressurePascals = (int)pressureInches;
-        if(imperialUnits){
-            temperatureC = (int)farenheitToCelcius(temperatureF);
-            pressurePascals = (int)mercuryInchesToPascals(pressureInches) / 100;
+        int temperatureC = (int) temperatureF;
+        int pressurePascals = (int) pressureInches;
+        if (imperialUnits) {
+            temperatureC = (int) farenheitToCelcius(temperatureF);
+            pressurePascals = (int) mercuryInchesToPascals(pressureInches) / 100;
         }
 
 
-        Reading reading = new Reading(uvIndex,humidity,temperatureC,(int)windSpeed,windDirection,pressurePascals,(int)rainfall);
+        Reading reading = new Reading(uvIndex, humidity, temperatureC, (int) windSpeed, windDirection, pressurePascals, (int) rainfall);
 
 
         String testOutput = String.format("UV: %s Humidity: %s Temperature: %s Wind speed: %s Wind direction: %s Pressure: %s Rainfall: %s",
@@ -132,9 +132,9 @@ public class WundergroundWeatherReceiver extends WeatherReceiver {
         return reading;
     }
 
-    private String getPageData(String stationName){
-        String url = String.format("https://www.wunderground.com/weather/au/%s",stationName);
+    private String getPageData(String stationName) {
+        String url = String.format("https://www.wunderground.com/weather/au/%s", stationName);
 
-        return readPage(url,"\n");
+        return readPage(url, "\n");
     }
 }

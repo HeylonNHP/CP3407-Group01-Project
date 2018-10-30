@@ -83,7 +83,7 @@ public class Window {
         mainWindow.repaint();
     }
 
-    public static void requestRepaint(){
+    public static void requestRepaint() {
         mainWindow.revalidate();
         mainWindow.repaint();
     }

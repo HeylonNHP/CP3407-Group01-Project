@@ -1,14 +1,11 @@
 package GUI.Panels;
 
-import GUI.*;
 import GUI.Window;
 import database.MaintenanceSchedule;
 import database.WeatherStation;
-import sun.font.TrueTypeFont;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.tree.ExpandVetoException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,23 +44,23 @@ public class StationMaintenance extends JPanel {
         add(notificationButton);
         final JPopupMenu menu = new JPopupMenu("Notification menu");
 
-        try{
+        try {
             MaintenanceSchedule[] scheduleList = database.databaseInterface.getMaintenanceSchedules(true);
             WeatherStation[] stations = database.databaseInterface.getWeatherStationList();
 
-            for(MaintenanceSchedule schedule: scheduleList){
-                for(WeatherStation station: stations){
-                    if(schedule.getStationID() == station.getStationID()){
-                        JMenuItem item = new JMenuItem(String.format("%s station requires repair on %s",station.getStationName(), schedule.getDate().toString()));
-                        item.addActionListener((e)->{
+            for (MaintenanceSchedule schedule : scheduleList) {
+                for (WeatherStation station : stations) {
+                    if (schedule.getStationID() == station.getStationID()) {
+                        JMenuItem item = new JMenuItem(String.format("%s station requires repair on %s", station.getStationName(), schedule.getDate().toString()));
+                        item.addActionListener((e) -> {
                             String message = String.format("<html><h1>%s Station</h1><br><b>Repair notes: </b>%s<br>Is completed: %s<br><b>Scheduled date: </b>%s</html>",
-                                    station.getStationName(),schedule.getNotes(),schedule.isCompleted(),schedule.getDate().toString());
-                            String[] options = new String[] {"Completed", "OK"};
-                            int response = JOptionPane.showOptionDialog(null,message,"title", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+                                    station.getStationName(), schedule.getNotes(), schedule.isCompleted(), schedule.getDate().toString());
+                            String[] options = new String[]{"Completed", "OK"};
+                            int response = JOptionPane.showOptionDialog(null, message, "title", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
                             switch (response) {
                                 case 0:
-                                    try{
-                                        database.databaseInterface.setMaintenanceScheduleCompleted(schedule,true);
+                                    try {
+                                        database.databaseInterface.setMaintenanceScheduleCompleted(schedule, true);
                                         menu.remove(item);
                                         if (menu.getComponentCount() == 0) {
                                             try {
@@ -73,7 +70,7 @@ public class StationMaintenance extends JPanel {
                                                 ex.printStackTrace();
                                             }
                                         }
-                                    }catch (Exception ex){
+                                    } catch (Exception ex) {
                                         ex.printStackTrace();
                                     }
 
@@ -89,7 +86,7 @@ public class StationMaintenance extends JPanel {
                 }
 
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
 
         }
         if (menu.getComponentCount() > 0) {
@@ -111,7 +108,7 @@ public class StationMaintenance extends JPanel {
         stationListPanel.setBackground(Color.cyan);
         JScrollPane scrollPanel = new JScrollPane(stationListPanel);
         stationListPanel.setAutoscrolls(true);
-        scrollPanel.setBounds(25, 110, size.width-50, size.height-(150+25));
+        scrollPanel.setBounds(25, 110, size.width - 50, size.height - (150 + 25));
         add(scrollPanel);
 
         populateStationListPanel();

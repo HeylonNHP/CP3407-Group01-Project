@@ -135,8 +135,8 @@ public class StationViewer extends JPanel {
         try {
             populateStationList();
 
-            for(int i = 0; i < stationSelector.getItemCount(); ++i){
-                if (station.getStationName().equals(stationSelector.getItemAt(i).getStationName())){
+            for (int i = 0; i < stationSelector.getItemCount(); ++i) {
+                if (station.getStationName().equals(stationSelector.getItemAt(i).getStationName())) {
                     stationSelector.setSelectedIndex(i);
                 }
             }
@@ -148,9 +148,9 @@ public class StationViewer extends JPanel {
 
         //Event listeners
         backButton.addActionListener((e) -> {
-            if(backToMap){
+            if (backToMap) {
                 Window.showStationSelectorMap();
-            }else {
+            } else {
                 Window.showStartScreen();
             }
         });
@@ -159,7 +159,7 @@ public class StationViewer extends JPanel {
             Window.showStationPastWeather((WeatherStation) stationSelector.getSelectedItem());
         });
 
-        chartViewer.addActionListener((e) ->{
+        chartViewer.addActionListener((e) -> {
             Window.showStationChartViewer((WeatherStation) stationSelector.getSelectedItem());
         });
 

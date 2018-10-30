@@ -1,16 +1,11 @@
 package GUI.Panels;
 
-import GUI.*;
 import GUI.Window;
 import database.AdminUser;
-import database.WeatherStation;
-import javafx.scene.control.PasswordField;
 
 import javax.swing.*;
-import javax.swing.tree.ExpandVetoException;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.security.PublicKey;
 
 /**
  * Created by AleCSilva on 23/10/18.

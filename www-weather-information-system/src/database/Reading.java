@@ -1,6 +1,6 @@
 package database;
 
-import java.sql.Timestamp;
+//import java.sql.Timestamp;
 
 public class Reading {
     int readingUVindex;
